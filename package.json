@@ -1,0 +1,39 @@
+{
+  "private": true,
+  "scripts": {
+    "dev": "webpack --mode=development",
+    "prod": "webpack --mode=production",
+    "test": "./node_modules/.bin/mocha --exit --require babel-register --sort tests/"
+  },
+  "dependencies": {
+    "axios": "^0.18.0",
+    "history": "^4.7.2",
+    "js-cookie": "^2.2.0",
+    "react": "^16.4.1",
+    "react-beautiful-dnd": "^8.0.5",
+    "react-dom": "^16.4.1",
+    "react-redux": "^5.0.7",
+    "react-router-dom": "^4.3.1",
+    "redux": "^4.0.0",
+    "redux-thunk": "^2.3.0"
+  },
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-plugin-external-helpers": "^6.22.0",
+    "babel-plugin-transform-class-properties": "^6.24.1",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-register": "^6.26.0",
+    "css-loader": "^0.28.11",
+    "expect.js": "^0.3.1",
+    "mini-css-extract-plugin": "^0.4.1",
+    "mocha": "^5.2.0",
+    "node-sass": "^4.9.3",
+    "puppeteer": "^1.7.0",
+    "sass-loader": "^7.0.3",
+    "uglifyjs-webpack-plugin": "^1.2.7",
+    "webpack": "^4.12.2",
+    "webpack-cli": "^3.0.8"
+  }
+}

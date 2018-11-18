@@ -1,0 +1,25 @@
+.Header {
+  border-bottom: 2px solid black;
+  padding: 10px 20px 10px 15px;
+
+  &_nav {
+    display: flex;
+    flex-direction: row;
+    position: relative;
+  }
+
+  &_nav-link {
+    margin: 0 5px;
+  }
+
+  &_nav-link-right {
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 0;
+
+    span {
+      color: black;
+    }
+  }
+}

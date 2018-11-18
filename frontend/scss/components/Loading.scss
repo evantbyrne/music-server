@@ -1,0 +1,11 @@
+.Loading {
+  background: #000;
+  color: #fff;
+  display: inline-block;
+  left: 50%;
+  padding: 2px 5px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%);
+}

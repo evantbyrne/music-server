@@ -1,0 +1,84 @@
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0; }
+
+.ContextMenu {
+  background: white;
+  border: 2px solid black;
+  padding: 10px;
+  position: absolute;
+  width: 150px;
+  z-index: 2; }
+  .ContextMenu_link {
+    display: block;
+    margin-bottom: 5px; }
+    .ContextMenu_link:last-child {
+      margin-bottom: 0; }
+
+.Header {
+  border-bottom: 2px solid black;
+  padding: 10px 20px 10px 15px; }
+  .Header_nav {
+    display: flex;
+    flex-direction: row;
+    position: relative; }
+  .Header_nav-link {
+    margin: 0 5px; }
+  .Header_nav-link-right {
+    position: absolute;
+    right: 0;
+    text-decoration: none;
+    top: 0; }
+    .Header_nav-link-right span {
+      color: black; }
+
+.Loading {
+  background: #000;
+  color: #fff;
+  display: inline-block;
+  left: 50%;
+  padding: 2px 5px;
+  pointer-events: none;
+  position: absolute;
+  top: 0;
+  transform: translateX(-50%); }
+
+.Login {
+  border: 2px solid black;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px; }
+  .Login_button {
+    appearance: none;
+    background: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: white;
+    display: block;
+    font-size: 16px;
+    margin: 20px 60px 10px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    width: calc(100% - 120px); }
+    .Login_button[disabled] {
+      background: gray;
+      color: black;
+      cursor: wait; }
+  .Login_field {
+    border: 0;
+    border-bottom: 2px dashed black;
+    display: block;
+    font-size: 24px;
+    margin: 10px;
+    padding: 20px 20px 19px 20px;
+    width: calc(100% - 20px); }
+    .Login_field.-error {
+      border-color: red; }
+    .Login_field.-text {
+      font-size: 16px;
+      height: 300px; }
+

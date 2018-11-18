@@ -1,0 +1,48 @@
+.Login {
+  border: 2px solid black;
+  left: 50%;
+  position: absolute;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: 400px;
+
+  &_button {
+    appearance: none;
+    background: black;
+    border: 1px solid black;
+    border-radius: 3px;
+    color: white;
+    display: block;
+    font-size: 16px;
+    margin: 20px 60px 10px;
+    padding: 12px;
+    cursor: pointer;
+    text-align: center;
+    width: calc(100% - 120px);
+
+    &[disabled] {
+      background: gray;
+      color: black;
+      cursor: wait;
+    }
+  }
+
+  &_field {
+    border: 0;
+    border-bottom: 2px dashed black;
+    display: block;
+    font-size: 24px;
+    margin: 10px;
+    padding: 20px 20px 19px 20px;
+    width: calc(100% - 20px);
+
+    &.-error {
+      border-color: red;
+    }
+
+    &.-text {
+      font-size: 16px;
+      height: 300px;
+    }
+  }
+}

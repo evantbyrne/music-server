@@ -3,6 +3,17 @@ from frontend import models
 from rest_framework import serializers
 
 
+class SongSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = models.Song
+        fields = (
+            'album_order',
+            'file',
+            'id',
+            'name',
+        )
+
+
 class UserSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = User
