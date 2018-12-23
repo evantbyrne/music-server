@@ -39,7 +39,14 @@ export default function baseReducer(state = initialState, action) {
           loading_count: state.loading_count - 1
         });
       })();
-    
+
+    case "IS_LOADING":
+      return (function() {
+        return Object.assign({}, state, {
+          loading_count: state.loading_count + (action.is_loading ? 1 : -1)
+        });
+      })();
+
     case "LOAD_USER_BEGIN":
       return (function() {
         return Object.assign({}, state, {

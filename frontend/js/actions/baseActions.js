@@ -1,6 +1,13 @@
 import axios from 'axios';
 import history from '../history';
 
+export function isLoading(is_loading) {
+  return {
+    is_loading,
+    type: 'IS_LOADING',
+  };
+};
+
 export function load(token, method, url, type_begin = null, type_success = null, type_error = null, data = {}) {
   let params = {
     data,
