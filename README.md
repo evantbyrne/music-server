@@ -21,6 +21,6 @@ Self-hosted music streaming service.
 - Web server runs on port `8000` by default. Change in `docker-compose.yml` as needed.
 - Build Docker containers: `docker-compose build`
 - Run Docker containers: `docker-compose up`
-- Open a new tab and run bash in the Django container: `docker exec -it music-server_web_1 bash`
+- Open a new tab and run bash in the Django container: `docker exec -it music-server_web bash`
 - Run migrations: `python manage.py migrate`
 - Create admin user: `python manage.py createsuperuser`

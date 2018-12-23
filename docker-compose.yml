@@ -3,12 +3,22 @@ version: '3'
 services:
   db:
     image: postgres
+    container_name: music-server_db
+    ports:
+      - 5432:5432
+    restart: always
+    volumes:
+      - db-volume:/var/lib/postgresql/data
   web:
     build: .
     command: python3 manage.py runserver 0.0.0.0:8000
-    volumes:
-      - .:/code
-    ports:
-      - "8000:8000"
+    container_name: music-server_web
     depends_on:
       - db
+    ports:
+      - "8000:8000"
+    volumes:
+      - .:/code
+
+volumes:
+  db-volume:
