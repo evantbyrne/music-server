@@ -1,13 +1,22 @@
-import React from "react";
-import { connect } from "react-redux";
-import ContextMenu from './ContextMenu';
-import ContextMenuLink from './ContextMenuLink';
-import { load, view } from '../actions/baseActions';
+import { Component, h } from "preact";
+import { route } from "preact-router";
+import { connect } from "unistore/preact";
+import ContextMenu from "./ContextMenu.js";
+import ContextMenuLink from "./ContextMenuLink.js";
+import { actions } from "../store.js";
 
-class Header extends React.Component {
+class Header extends Component {
   static getDerivedStateFromProps(props, state) {
-    if (!props.is_loading && !props.user && props.token) {
-      props.loadUser(props.token);
+    const { scope } = props;
+    if (scope.loading_count === 0 && !scope.user && scope.token) {
+      scope.userLoadBegin();
+      scope.load({
+        method: "get",
+        onSuccess: scope.userLoadSuccess,
+        scope,
+        token: scope.token,
+        url: "/auth/user/?format=json",
+      });
     }
 
     return state;
@@ -26,16 +35,17 @@ class Header extends React.Component {
 
   onview = (event) => {
     event.preventDefault();
-    this.props.view("/", "VIEW_DASHBOARD");
-  }
+    this.props.scope.viewDashboard();
+    route("/");
+  };
 
   onLogOut = (event) => {
     event.preventDefault();
-    this.props.logOut(this.props.token);
+    this.props.scope.logout();
   };
 
-  render() {
-    if (!this.props.token) {
+  render(props, state) {
+    if (!props.scope.token) {
       return null;
     }
 
@@ -43,16 +53,16 @@ class Header extends React.Component {
       <header className="Header">
         <nav className="Header_nav">
           <a className="Header_nav-link" href="/" id="HeaderNav_dashboard" onClick={this.onview}>Dashboard</a>
-          {this.props.user && (
+          {props.scope.user && (
             <a className="Header_nav-link-right"
               id="HeaderNav_user"
               href="#"
               onClick={this.onContextMenu}>
-              <u>{this.props.user.username}</u> <span>{this.state.is_context_menu ? "↑" : "↓"}</span>
+              <u>{props.scope.user.username}</u> <span>{state.is_context_menu ? "↑" : "↓"}</span>
             </a>
           )}
         </nav>
-        {this.state.is_context_menu && (
+        {state.is_context_menu && (
           <ContextMenu right={20} top={30}>
             <ContextMenuLink id="ContextMenu_logout" onClick={this.onLogOut}>Log Out</ContextMenuLink>
           </ContextMenu>
@@ -62,47 +72,10 @@ class Header extends React.Component {
   }
 }
 
-function mapStateToProps(state, ownProps) {
-  return {
-    is_loading: state.base.loading_count > 0,
-    token: state.base.token,
-    user: state.base.user
-  };
-}
+const HeaderView = connect(["loading_count", "token", "user"], actions)(scope => {
+  return (
+    <Header scope={scope} />
+  );
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    loadUser: function(token) {
-      dispatch(
-        load(
-          token,
-          "get",
-          "/auth/user/?format=json",
-          "LOAD_USER_BEGIN",
-          "LOAD_USER_SUCCESS"
-        )
-      );
-    },
-
-    logOut: function(token) {
-      dispatch(
-        load(
-          token,
-          "get",
-          "/auth/logout/?format=json",
-          "LOGOUT_BEGIN",
-          "LOGOUT_SUCCESS"
-        )
-      );
-    },
-
-    view: function() {
-      dispatch(view("/", "VIEW_DASHBOARD"));
-    }
-  }
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Header);
+export default HeaderView;

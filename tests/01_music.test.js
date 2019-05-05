@@ -57,7 +57,6 @@ describe("Music", function() {
     await page.click("#HeaderNav_user");
     await page.waitForSelector("#ContextMenu_logout");
     await page.click("#ContextMenu_logout");
-    await waitForLoadStart(page);
     await page.waitForSelector(".Login");
     expect(page.url()).to.be("http://localhost:8000/auth/login");
   });

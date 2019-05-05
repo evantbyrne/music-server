@@ -1,9 +1,10 @@
 import axios from 'axios';
-import React from 'react';
-import { connect } from 'react-redux';
-import { view } from '../actions/baseActions';
+import { cloneElement, Component, Fragment, h } from "preact";
+import { route } from "preact-router";
+import { connect } from "unistore/preact";
+import { actions } from "../store.js";
 
-class Loader extends React.Component {
+class Loader extends Component {
   state = {
     data: null,
     is_loading: false,
@@ -23,15 +24,15 @@ class Loader extends React.Component {
   }
 
   fetch() {
-    const { dispatch, url, token } = this.props;
-    const params = {
+    const { scope } = this.props;
+    let params = {
       method: "GET",
-      url
+      url: scope.url,
     };
 
-    if (token) {
+    if (scope.token) {
       params.headers = {
-        Authorization: `Token ${token}`
+        Authorization: `Token ${scope.token}`,
       };
     }
 
@@ -51,44 +52,34 @@ class Loader extends React.Component {
       })
       .catch(error => {
         if (error.response.status === 401) {
-          dispatch(view("/auth/login", "VIEW_LOGIN"));
+          this.props.scope.viewLogin();
+          route("/auth/login");
         } else {
           console.error(error);
         }
       });
   }
 
-  render() {
-    const { data, is_loading } = this.state;
-    const { children, url } = this.props;
-    const child_props = {
+  render(props, state) {
+    const { data, is_loading } = state;
+    const { scope } = props;
+    const childProps = {
       data,
       is_loading,
-      url
+      url: scope.url,
     };
     return (
-      <React.Fragment>
-        {React.Children.map(children, child =>
-          React.cloneElement(child, child_props)
-        )}
-      </React.Fragment>
+      <Fragment>
+        {scope.children.map(child => cloneElement(child, childProps))}
+      </Fragment>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    token: state.base.token
-  };
-}
+const LoaderView = connect(["token"], actions)(scope => {
+  return (
+    <Loader scope={scope} />
+  );
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    dispatch
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Loader);
+export default LoaderView;

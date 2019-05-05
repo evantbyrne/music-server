@@ -1,16 +1,18 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import { isLoading, load, view } from '../actions/baseActions';
+import { Component, h } from "preact";
+import { route } from "preact-router";
+import { connect } from "unistore/preact";
+import { actions } from "../store.js";
 
-class Login extends React.Component {
+class Login extends Component {
   state = {
     password: "",
     username: "",
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.token) {
-      props.view("/", "VIEW_DASHBOARD");
+    if (props.scope.token) {
+      props.scope.viewDashboard();
+      route("/");
     }
 
     return state;
@@ -22,8 +24,8 @@ class Login extends React.Component {
       username: "",
     });
 
-    if (this.props.is_loading) {
-      this.props.onIsLoading(false);
+    if (this.props.scope.loading_count > 0) {
+      this.props.scope.isLoading(false);
     }
   }
 
@@ -35,10 +37,21 @@ class Login extends React.Component {
 
   onLogin = (event) => {
     event.preventDefault();
-    this.props.onLogin(this.state.username, this.state.password);
+    const { scope } = this.props;
+    const data = {
+      username: this.state.username,
+      password: this.state.password,
+    };
+    scope.load({
+      data,
+      method: "post",
+      onSuccess: scope.loginSuccess,
+      scope,
+      url: "/api/token/",
+    });
   }
 
-  render() {
+  render(props, state) {
     const mutate = this.mutate.bind(this);
 
     return (
@@ -47,13 +60,13 @@ class Login extends React.Component {
           name="username"
           onChange={(e) => mutate(e, 'username')}
           placeholder="Username..."
-          value={this.state.username} />
+          value={state.username} />
         <input className="Login_field"
           name="password"
           onChange={(e) => mutate(e, 'password')}
           placeholder="Password..."
           type="password"
-          value={this.state.password} />
+          value={state.password} />
         <button className="Login_button"
           disabled={false}
           onClick={this.onLogin}>Log In</button>
@@ -62,40 +75,10 @@ class Login extends React.Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    is_loading: state.base.loading_count > 0,
-    token: state.base.token
-  };
-}
+const LoginView = connect(["loading_count", "token"], actions)(scope => {
+  return (
+    <Login scope={scope} />
+  );
+})
 
-function mapDispatchToProps(dispatch) {
-  return {
-    onIsLoading: (is_loading) => dispatch(isLoading(is_loading)),
-
-    onLogin: (username, password) => {
-      const data = {
-        username,
-        password
-      };
-      dispatch(
-        load(
-          null,
-          'post',
-          `/api/token/`,
-          null,
-          "LOGIN_SUCCESS",
-          null,
-          data
-        )
-      );
-    },
-
-    view: () => dispatch(view("/", "VIEW_DASHBOARD"))
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Login);
+export default LoginView;

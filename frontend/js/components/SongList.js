@@ -1,5 +1,4 @@
-import React from 'react';
-import { Link } from "react-router-dom";
+import { h } from "preact";
 import Loader from './Loader';
 
 const SongList = () => {
@@ -18,12 +17,15 @@ const SongListLoaded = (props) => {
   }
 
   return (
-    <div id="songs">
-      {data.map(song => (
-        <div>
-          <Link to={`/song/${song.id}`}>{song.name}</Link>
-        </div>
-      ))}
+    <div>
+      <h2>Songs</h2>
+      <div id="songs">
+        {data.map(song => (
+          <div>
+            <a href={`/song/${song.id}`}>{song.name}</a>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

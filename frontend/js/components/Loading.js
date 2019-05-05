@@ -1,21 +1,11 @@
-import React from 'react';
-import { connect } from 'react-redux';
+import { h } from "preact";
+import { connect } from "unistore/preact";
+import { actions } from "../store.js";
 
-class Loading extends React.Component {
-  render() {
-    return this.props.is_loading && (
-      <div className="Loading">Loading...</div>
-    );
-  }
-}
+const LoadingView = connect(["loading_count"], actions)(scope => {
+  return scope.loading_count > 0 && (
+    <div className="Loading">Loading...</div>
+  );
+})
 
-function mapStateToProps(state, ownProps) {
-  return {
-    is_loading: state.base.loading_count > 0
-  };
-}
-
-export default connect(
-  mapStateToProps,
-  null
-)(Loading);
+export default LoadingView;

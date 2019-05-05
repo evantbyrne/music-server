@@ -1,18 +1,16 @@
-import React from 'react';
+import { h } from 'preact';
 
-class ContextMenu extends React.Component {
-  render() {
-    const style = {
-      bottom: this.props.bottom || "auto",
-      left: this.props.left || "auto",
-      right: this.props.right || "auto",
-      top: this.props.top || "auto"
-    };
+const ContextMenu = (props) => {
+  const style = {
+    bottom: props.bottom || "auto",
+    left: props.left || "auto",
+    right: props.right || "auto",
+    top: props.top || "auto"
+  };
 
-    return (
-      <div className="ContextMenu" style={style}>{this.props.children}</div>
-    );
-  }
+  return (
+    <div className="ContextMenu" style={style}>{props.children}</div>
+  );
 }
 
 export default ContextMenu;

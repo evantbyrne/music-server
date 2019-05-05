@@ -1,4 +1,7 @@
 {
-  "plugins": ["transform-class-properties"],
+  "plugins": [
+    ["transform-react-jsx", { "pragma": "h" }],
+    "transform-class-properties"
+  ],
   "presets": ["env", "react"],
 }

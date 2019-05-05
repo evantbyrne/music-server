@@ -1,14 +1,12 @@
-import React from 'react';
+import { h } from 'preact';
 
-class ContextMenuLink extends React.Component {
-  render() {
-    return (
-      <a className="ContextMenu_link"
-        href="#"
-        id={this.props.id || false}
-        onClick={this.props.onClick}>{this.props.children}</a>
-    );
-  }
+const ContextMenuLink = (props) => {
+  return (
+    <a className="ContextMenu_link"
+      href="#"
+      id={props.id || false}
+      onClick={props.onClick}>{props.children}</a>
+  );
 }
 
 export default ContextMenuLink;
