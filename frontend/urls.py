@@ -10,5 +10,6 @@ urlpatterns = [
     path('auth/login/', views.dashboard, name='auth_login'),
     path('auth/logout/', auth_views.LogoutView.as_view(), name='auth_logout'),
     path('auth/user/', auth_views.AuthUserView.as_view(), name='auth_user'),
+    path('song/<int:id>/', views.detail, name='song'),
     path('', views.dashboard, name='index')
 ]

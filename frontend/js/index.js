@@ -4,7 +4,8 @@ import { Provider } from "unistore/preact";
 import Header from './components/Header.js';
 import Login from './components/Login.js';
 import Loading from './components/Loading.js';
-import SongList from './components/SongList';
+import Song from './components/Song.js';
+import SongList from './components/SongList.js';
 import { store } from './store.js';
 
 const Error404 = () => {
@@ -20,6 +21,7 @@ render((
       <Router>
         <SongList path="/" />
         <Login path="/auth/login" />
+        <Song path="/song/:id" />
         <Error404 default />
       </Router>
       <Loading />
