@@ -1,5 +1,7 @@
 import { Component, h } from "preact";
 import { connect } from "unistore/preact";
+import IconPause from './IconPause';
+import IconPlay from './IconPlay';
 import { actions } from "../store.js";
 
 class Player extends Component {
@@ -41,12 +43,12 @@ class Player extends Component {
 
   onPause(event) {
     event.preventDefault();
-    this.audio.pause();
+    this.state.audio.pause();
   }
 
   onPlay(event) {
     event.preventDefault();
-    this.audio.play();
+    this.state.audio.play();
   }
 
   render(props, state) {
@@ -78,6 +80,16 @@ class Player extends Component {
             </div>
           )}
         </div>
+        {!state.audio.paused && (
+          <a className="Player_pause" href="#" onClick={(event) => this.onPause(event)}>
+            <IconPause />
+          </a>
+        )}
+        {state.audio.paused && (
+          <a className="Player_play" href="#" onClick={(event) => this.onPlay(event)}>
+            <IconPlay />
+          </a>
+        )}
         <div className="Player_progress">
           <div className="Player_progress-bar" style={{ width: `${state.percent}%` }}></div>
         </div>

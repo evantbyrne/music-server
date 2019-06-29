@@ -90,6 +90,24 @@ html {
     position: absolute;
     right: 0;
     top: 0; }
+  .Player_pause, .Player_play {
+    display: block;
+    height: 30px;
+    left: 268px;
+    position: absolute;
+    top: 21px;
+    width: 30px; }
+    .Player_pause svg, .Player_play svg {
+      fill: #D8D8D8;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s; }
+    .Player_pause:hover svg, .Player_play:hover svg {
+      fill: #ffffff; }
+  .Player_play svg {
+    margin-top: 1px; }
   .Player_progress {
     background: #222428;
     height: 6px;

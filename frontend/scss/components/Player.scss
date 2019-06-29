@@ -17,6 +17,37 @@
     top: 0;
   }
 
+  &_pause,
+  &_play {
+    display: block;
+    height: 30px;
+    left: 268px;
+    position: absolute;
+    top: 21px;
+    width: 30px;
+
+    svg {
+      fill: #D8D8D8;
+      left: 50%;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s;
+    }
+
+    &:hover {
+      svg {
+        fill: #ffffff;
+      }
+    }
+  }
+
+  &_play {
+    svg {
+      margin-top: 1px;
+    }
+  }
+
   &_progress {
     background: #222428;
     height: 6px;

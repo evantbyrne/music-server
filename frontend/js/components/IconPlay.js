@@ -2,7 +2,7 @@ import { h } from "preact";
 
 const IconPlay = (props) => {
   return (
-    <svg class={props.classes} width="12px" height="14px" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
+    <svg className={props.classes} width="12px" height="14px" viewBox="0 0 12 14" version="1.1" xmlns="http://www.w3.org/2000/svg">
       <g stroke="none" stroke-width="1" fill-rule="evenodd">
         <g transform="translate(-340.000000, -306.000000)" fill="inherit">
           <g transform="translate(317.000000, 18.000000)">
