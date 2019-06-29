@@ -1,0 +1,64 @@
+.Player {
+  background: transparentize(#ffffff, 0.9);
+  bottom: 0;
+  height: 70px;
+  left: 0;
+  position: fixed;
+  right: 0;
+
+  &::after {
+    background: transparentize(#ffffff, 0.9);
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+
+  &_progress {
+    background: #222428;
+    height: 6px;
+    left: 300px;
+    overflow: hidden;
+    position: absolute;
+    right: 60px;
+    top: 34px;
+    transition: width 0.1s;
+  }
+
+  &_progress-bar {
+    background: #1060FF;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0;
+  }
+
+  &_song {
+    font-size: 12px;
+    left: 20px;
+    letter-spacing: 0.5;
+    line-height: 14px;
+    padding: 5px 0 0 50px;
+    position: absolute;
+    top: 15px;
+  }
+
+  &_song-album {
+    margin-top: 3px;
+  }
+
+  &_song-cover {
+    background-color: #000000;
+    background-position: center;
+    background-size: contain;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 40px;
+  }
+}

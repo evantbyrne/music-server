@@ -1,0 +1,26 @@
+.Sidebar {
+  &_nav {
+    display: block;
+    padding-top: 20px;
+  }
+
+  &_nav-link {
+    color: #A2A6A9;
+    display: block;
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 24px;
+    padding: 3px 24px;
+    text-decoration: none;
+    transition: all 0.25s;
+
+    &:hover {
+      color: #ffffff;
+    }
+
+    &.-active {
+      background: transparentize(#ffffff, 0.9);
+      color: #ffffff;
+    }
+  }
+}

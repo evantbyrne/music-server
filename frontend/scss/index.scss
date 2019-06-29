@@ -4,7 +4,15 @@
   padding: 0;
 }
 
-@import "components/ContextMenu";
-@import "components/Header";
+body,
+html {
+  color: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif;
+}
+
+@import "components/Container";
 @import "components/Loading";
 @import "components/Login";
+@import "components/Player";
+@import "components/Sidebar";
+@import "components/Song";

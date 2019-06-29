@@ -4,8 +4,10 @@ import { route } from "preact-router";
 import createStore from "unistore";
 
 export let store  = createStore({
+  current_song: null,
   error: null,
   loading_count : 0,
+  now_playing: [],
   title: null,
   token: Cookies.get("token", null),
   user: null
@@ -37,6 +39,23 @@ export let actions = (store) => ({
     return {
       error,
       loading_count: state.loading_count - 1
+    };
+  },
+
+  append: (state, data) => {
+    let now_playing = state.now_playing;
+    now_playing[now_playing.length] = data.song;
+    return {
+      now_playing,
+    };
+  },
+
+  appendAndPlay: (state, data) => {
+    let now_playing = state.now_playing;
+    now_playing[now_playing.length] = data.song;
+    return {
+      current_song: now_playing.length - 1,
+      now_playing,
     };
   },
 
@@ -88,6 +107,15 @@ export let actions = (store) => ({
   logout: () => {
     Cookies.remove("token");
     window.location.href = "/";
+  },
+
+  next: (state, data) => {
+    const current_song = (state.now_playing.length > (state.current_song + 1)
+      ? state.current_song + 1
+      : state.current_song);
+    return {
+      current_song,
+    };
   },
 
   userLoadBegin: () => {

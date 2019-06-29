@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { cloneElement, Component, Fragment, h } from "preact";
+import { cloneElement, Component, h } from "preact";
 import { route } from "preact-router";
 import { connect } from "unistore/preact";
 import { actions } from "../store.js";
@@ -69,9 +69,9 @@ class Loader extends Component {
       url: scope.url,
     };
     return (
-      <Fragment>
+      <div>
         {scope.children.map(child => cloneElement(child, childProps))}
-      </Fragment>
+      </div>
     );
   }
 }

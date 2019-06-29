@@ -1,0 +1,19 @@
+.Container {
+  background: linear-gradient(to bottom, #43353A, #20242C);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0;
+
+  &_main {
+    background: #1B1D21;
+    bottom: 70px;
+    left: 300px;
+    overflow: auto;
+    padding: 20px;
+    position: fixed;
+    right: 0;
+    top: 0;
+  }
+}

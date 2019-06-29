@@ -3,35 +3,27 @@
   margin: 0;
   padding: 0; }
 
-.ContextMenu {
-  background: white;
-  border: 2px solid black;
-  padding: 10px;
-  position: absolute;
-  width: 150px;
-  z-index: 2; }
-  .ContextMenu_link {
-    display: block;
-    margin-bottom: 5px; }
-    .ContextMenu_link:last-child {
-      margin-bottom: 0; }
+body,
+html {
+  color: #ffffff;
+  font-family: 'Source Sans Pro', sans-serif; }
 
-.Header {
-  border-bottom: 2px solid black;
-  padding: 10px 20px 10px 15px; }
-  .Header_nav {
-    display: flex;
-    flex-direction: row;
-    position: relative; }
-  .Header_nav-link {
-    margin: 0 5px; }
-  .Header_nav-link-right {
-    position: absolute;
+.Container {
+  background: linear-gradient(to bottom, #43353A, #20242C);
+  bottom: 0;
+  left: 0;
+  position: fixed;
+  right: 0;
+  top: 0; }
+  .Container_main {
+    background: #1B1D21;
+    bottom: 70px;
+    left: 300px;
+    overflow: auto;
+    padding: 20px;
+    position: fixed;
     right: 0;
-    text-decoration: none;
     top: 0; }
-    .Header_nav-link-right span {
-      color: black; }
 
 .Loading {
   background: #000;
@@ -81,4 +73,102 @@
     .Login_field.-text {
       font-size: 16px;
       height: 300px; }
+
+.Player {
+  background: rgba(255, 255, 255, 0.1);
+  bottom: 0;
+  height: 70px;
+  left: 0;
+  position: fixed;
+  right: 0; }
+  .Player::after {
+    background: rgba(255, 255, 255, 0.1);
+    content: "";
+    display: block;
+    height: 1px;
+    left: 0;
+    position: absolute;
+    right: 0;
+    top: 0; }
+  .Player_progress {
+    background: #222428;
+    height: 6px;
+    left: 300px;
+    overflow: hidden;
+    position: absolute;
+    right: 60px;
+    top: 34px;
+    transition: width 0.1s; }
+  .Player_progress-bar {
+    background: #1060FF;
+    height: 100%;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 0; }
+  .Player_song {
+    font-size: 12px;
+    left: 20px;
+    letter-spacing: 0.5;
+    line-height: 14px;
+    padding: 5px 0 0 50px;
+    position: absolute;
+    top: 15px; }
+  .Player_song-album {
+    margin-top: 3px; }
+  .Player_song-cover {
+    background-color: #000000;
+    background-position: center;
+    background-size: contain;
+    height: 40px;
+    left: 0;
+    position: absolute;
+    top: 0;
+    width: 40px; }
+
+.Sidebar_nav {
+  display: block;
+  padding-top: 20px; }
+
+.Sidebar_nav-link {
+  color: #A2A6A9;
+  display: block;
+  font-size: 18px;
+  font-weight: 300;
+  line-height: 24px;
+  padding: 3px 24px;
+  text-decoration: none;
+  transition: all 0.25s; }
+  .Sidebar_nav-link:hover {
+    color: #ffffff; }
+  .Sidebar_nav-link.-active {
+    background: rgba(255, 255, 255, 0.1);
+    color: #ffffff; }
+
+.Song {
+  background: rgba(216, 216, 216, 0.04);
+  color: #FFFFFF;
+  fill: #FFFFFF;
+  margin-bottom: 4px;
+  padding: 20px 10px 20px 20px;
+  position: relative; }
+  .Song_add, .Song_play {
+    opacity: 0.75;
+    position: absolute;
+    top: 15px;
+    transition: all 0.25s; }
+    .Song_add:hover, .Song_play:hover {
+      cursor: pointer;
+      opacity: 1; }
+  .Song_add {
+    left: 58px;
+    padding: 9px 15px 7px; }
+  .Song_play {
+    left: 15px;
+    padding: 10px 15px 6px; }
+  .Song_title {
+    font-size: 18px;
+    font-weight: 300;
+    line-break: 23px;
+    margin-left: 100px; }
 

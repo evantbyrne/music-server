@@ -6,7 +6,6 @@ from rest_framework.viewsets import ModelViewSet
 
 
 class SongViewSet(ModelViewSet):
-    # lookup_field = 'id'
     queryset = models.Song.objects.all()
     serializer_class = serializers.SongSerializer
 

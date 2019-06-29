@@ -1,33 +1,57 @@
-import { h } from "preact";
+import { Component, h } from "preact";
+import { connect } from "unistore/preact";
+import IconAdd from './IconAdd';
+import IconPlay from './IconPlay';
 import Loader from './Loader';
+import { actions } from "../store.js";
 
-const SongList = () => {
-  return (
-    <Loader url="/api/songs.json">
-      <SongListLoaded />
-    </Loader>
-  );
-};
+class SongListLoaded extends Component {
 
-const SongListLoaded = (props) => {
-  const { data, is_loading } = props;
-
-  if (data === null || is_loading) {
-    return null;
+  onAddNowPlaying(event, song) {
+    event.preventDefault();
+    this.props.scope.append({
+      song,
+    });
   }
 
-  return (
-    <div>
-      <h2>Songs</h2>
-      <div id="songs">
+  onPlay(event, song) {
+    event.preventDefault();
+    this.props.scope.appendAndPlay({
+      song,
+    });
+  }
+
+  render(props, state) {
+    const { data, is_loading } = props;
+
+    if (data === null || is_loading) {
+      return null;
+    }
+
+    return (
+      <div class="Container_main" id="songs">
         {data.map(song => (
-          <div>
-            <a href={`/song/${song.id}`}>{song.name}</a>
+          <div class="Song">
+            <a class="Song_play" onClick={(event) => this.onPlay(event, song)}>
+              <IconPlay />
+            </a>
+            <a class="Song_add" onClick={(event) => this.onAddNowPlaying(event, song)}>
+              <IconAdd />
+            </a>
+            <div class="Song_title">{song.name}</div>
           </div>
         ))}
       </div>
-    </div>
-  );
+    );
+  }
 };
+
+const SongList = connect([], actions)(scope => {
+  return (
+    <Loader url="/api/songs.json">
+      <SongListLoaded scope={scope} />
+    </Loader>
+  );
+});
 
 export default SongList;

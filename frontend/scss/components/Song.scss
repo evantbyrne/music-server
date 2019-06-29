@@ -1,0 +1,38 @@
+.Song {
+  background: transparentize(#D8D8D8, 0.96);
+  color: #FFFFFF;
+  fill: #FFFFFF;
+  margin-bottom: 4px;
+  padding: 20px 10px 20px 20px;
+  position: relative;
+
+  &_add,
+  &_play {
+    opacity: 0.75;
+    position: absolute;
+    top: 15px;
+    transition: all 0.25s;
+
+    &:hover {
+      cursor: pointer;
+      opacity: 1;
+    }
+  }
+
+  &_add {
+    left: 58px;
+    padding: 9px 15px 7px;
+  }
+
+  &_play {
+    left: 15px;
+    padding: 10px 15px 6px;
+  }
+
+  &_title {
+    font-size: 18px;
+    font-weight: 300;
+    line-break: 23px;
+    margin-left: 100px;
+  }
+}
