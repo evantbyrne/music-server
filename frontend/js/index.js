@@ -8,6 +8,7 @@ import UserLoader from './components/UserLoader';
 import { store } from './store.js';
 import AlbumDetail from './views/AlbumDetail.js';
 import AlbumList from './views/AlbumList.js';
+import NowPlaying from './views/NowPlaying.js';
 import SongList from './views/SongList.js';
 
 const Error404 = () => {
@@ -23,6 +24,7 @@ render((
       <Router>
         <AlbumDetail path="/albums/:albumId/" />
         <AlbumList path="/albums/" />
+        <NowPlaying path="/now-playing/" />
         <SongList path="/" />
         <Login path="/auth/login" />
         <Error404 default />

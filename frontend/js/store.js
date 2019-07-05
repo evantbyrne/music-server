@@ -8,6 +8,7 @@ export let store  = createStore({
   error: null,
   loading_count : 0,
   now_playing: [],
+  now_playing_removed: [],
   title: null,
   token: Cookies.get("token", null),
   user: null
@@ -43,16 +44,13 @@ export let actions = (store) => ({
   },
 
   append: (state, data) => {
-    let now_playing = state.now_playing;
-    now_playing[now_playing.length] = data.song;
     return {
-      now_playing,
+      now_playing: [].concat(state.now_playing, [data.song]),
     };
   },
 
   appendAndPlay: (state, data) => {
-    let now_playing = state.now_playing;
-    now_playing[now_playing.length] = data.song;
+    const now_playing = [].concat(state.now_playing, [data.song]);
     return {
       current_song: now_playing.length - 1,
       now_playing,
@@ -110,11 +108,27 @@ export let actions = (store) => ({
   },
 
   next: (state, data) => {
-    const current_song = (state.now_playing.length > (state.current_song + 1)
-      ? state.current_song + 1
-      : state.current_song);
+    let current_song = null;
+    for (let i = state.current_song + 1; i < state.now_playing.length; i++) {
+      if (!state.now_playing_removed.includes(i)) {
+        current_song = i;
+        break;
+      }
+    }
     return {
       current_song,
+    };
+  },
+
+  removeNowPlaying: (state, data) => {
+    return {
+      now_playing_removed: [data.songIndex].concat(state.now_playing_removed),
+    };
+  },
+
+  track: (state, data) => {
+    return {
+      current_song: data.songIndex,
     };
   },
 
