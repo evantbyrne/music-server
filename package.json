@@ -1,7 +1,7 @@
 {
   "private": true,
   "scripts": {
-    "dev": "webpack --mode=development",
+    "dev": "webpack --mode=development --watch",
     "prod": "webpack --mode=production",
     "test": "./node_modules/.bin/mocha --exit --require babel-register --sort tests/"
   },

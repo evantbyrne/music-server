@@ -2,4 +2,5 @@
 .DS_Store
 .vscode/
 __pycache__
+frontend/dist/*.map
 node_modules/
