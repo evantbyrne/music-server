@@ -36,6 +36,11 @@ html {
     width: calc(100% - 150px); }
     .Album.-detail .Album_main {
       width: calc(100% - 250px); }
+  .Album_meta {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 23px;
+    margin-top: 4px; }
   .Album_play {
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 4px;
@@ -64,7 +69,7 @@ html {
   .Album_title {
     font-size: 18px;
     font-weight: 300;
-    line-break: 23px; }
+    line-height: 23px; }
 
 .Container {
   background: linear-gradient(to bottom, #43353A, #20242C);

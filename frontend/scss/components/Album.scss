@@ -37,6 +37,13 @@
     }
   }
 
+  &_meta {
+    font-size: 14px;
+    font-weight: 300;
+    line-height: 23px;
+    margin-top: 4px;
+  }
+
   &_play {
     border: 1px solid transparentize(#FFFFFF, 0.75);
     border-radius: 4px;
@@ -75,6 +82,6 @@
   &_title {
     font-size: 18px;
     font-weight: 300;
-    line-break: 23px;
+    line-height: 23px;
   }
 }

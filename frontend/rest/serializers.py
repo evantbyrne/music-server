@@ -42,10 +42,19 @@ class ArtistSerializer(serializers.HyperlinkedModelSerializer):
 
 
 class SongSerializer(serializers.HyperlinkedModelSerializer):
+    artists = serializers.SerializerMethodField()
+
+    def get_artists(self, song):
+        artists = []
+        for artist in song.artists.all():
+            artists.append(ArtistSerializer(instance=artist).data)
+        return artists
+
     class Meta:
         model = models.Song
         fields = (
             'album_order',
+            'artists',
             'file',
             'id',
             'name',
