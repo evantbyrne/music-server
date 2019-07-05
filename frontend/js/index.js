@@ -6,6 +6,7 @@ import Loading from './components/Loading.js';
 import Player from './components/Player.js';
 import UserLoader from './components/UserLoader';
 import { store } from './store.js';
+import AlbumDetail from './views/AlbumDetail.js';
 import AlbumList from './views/AlbumList.js';
 import SongList from './views/SongList.js';
 
@@ -20,6 +21,7 @@ render((
     <div>
       <UserLoader />
       <Router>
+        <AlbumDetail path="/albums/:albumId/" />
         <AlbumList path="/albums/" />
         <SongList path="/" />
         <Login path="/auth/login" />

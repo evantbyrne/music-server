@@ -26,6 +26,7 @@ class AlbumListSerializer(serializers.HyperlinkedModelSerializer):
         model = models.Album
         fields = (
             'cover',
+            'id',
             'name',
             'slug',
             'songs',

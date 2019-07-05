@@ -1,0 +1,122 @@
+[
+{
+    "model": "frontend.album",
+    "pk": 1,
+    "fields": {
+        "cover": "music/cover_vPhBqgb.png",
+        "name": "Awake",
+        "slug": "awake"
+    }
+},
+{
+    "model": "frontend.artist",
+    "pk": 1,
+    "fields": {
+        "name": "Tycho"
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 1,
+    "fields": {
+        "album": 1,
+        "album_order": 1,
+        "file": "music/Tycho/Awake/1-01 Awake.mp3",
+        "name": "Awake",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 2,
+    "fields": {
+        "album": 1,
+        "album_order": 2,
+        "file": "music/Tycho/Awake/1-02 Montana.mp3",
+        "name": "Montana",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 3,
+    "fields": {
+        "album": 1,
+        "album_order": 3,
+        "file": "music/Tycho/Awake/1-03 L.mp3",
+        "name": "L",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 4,
+    "fields": {
+        "album": 1,
+        "album_order": 4,
+        "file": "music/Tycho/Awake/1-04 Dye.mp3",
+        "name": "Dye",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 5,
+    "fields": {
+        "album": 1,
+        "album_order": 5,
+        "file": "music/Tycho/Awake/1-05 See.mp3",
+        "name": "See",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 6,
+    "fields": {
+        "album": 1,
+        "album_order": 6,
+        "file": "music/Tycho/Awake/1-06 Apogee.mp3",
+        "name": "Apogee",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 7,
+    "fields": {
+        "album": 1,
+        "album_order": 7,
+        "file": "music/Tycho/Awake/1-07 Spectre.mp3",
+        "name": "Spectre",
+        "artists": [
+            1
+        ]
+    }
+},
+{
+    "model": "frontend.song",
+    "pk": 8,
+    "fields": {
+        "album": 1,
+        "album_order": 8,
+        "file": "music/Tycho/Awake/1-08 Plains.mp3",
+        "name": "Plains",
+        "artists": [
+            1
+        ]
+    }
+}
+]
