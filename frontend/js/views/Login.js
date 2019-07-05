@@ -55,30 +55,32 @@ class Login extends Component {
     const mutate = this.mutate.bind(this);
 
     return (
-      <form className="Login" onSubmit={this.onLogin}>
-        <input className="Login_field"
-          name="username"
-          onChange={(e) => mutate(e, 'username')}
-          placeholder="Username..."
-          value={state.username} />
-        <input className="Login_field"
-          name="password"
-          onChange={(e) => mutate(e, 'password')}
-          placeholder="Password..."
-          type="password"
-          value={state.password} />
-        <button className="Login_button"
-          disabled={false}
-          onClick={this.onLogin}>Log In</button>
-      </form>
+      <div className="Container">
+        <form className="Login" onSubmit={this.onLogin}>
+          <input className="Login_field"
+            name="username"
+            onChange={(e) => mutate(e, 'username')}
+            placeholder="Username..."
+            value={state.username} />
+          <input className="Login_field"
+            name="password"
+            onChange={(e) => mutate(e, 'password')}
+            placeholder="Password..."
+            type="password"
+            value={state.password} />
+          <button className="Login_button"
+            disabled={false}
+            onClick={this.onLogin}>Log In</button>
+        </form>
+      </div>
     );
   }
 }
 
-const LoginView = connect(["loading_count", "token"], actions)(scope => {
+const LoginConnection = connect(["loading_count", "token"], actions)(scope => {
   return (
     <Login scope={scope} />
   );
 })
 
-export default LoginView;
+export default LoginConnection;

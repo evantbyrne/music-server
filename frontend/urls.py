@@ -5,6 +5,7 @@ from . import views
 from .rest import auth_views, viewsets
 
 urlpatterns = [
+    path('albums/', views.dashboard, name='albums'),
     path('api/', include(viewsets.router.urls)),
     path('api/token/', obtain_auth_token, name='auth_token'),
     path('auth/login/', views.dashboard, name='auth_login'),

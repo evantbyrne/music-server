@@ -1,0 +1,67 @@
+.Album {
+  background: transparentize(#D8D8D8, 0.96);
+  color: #FFFFFF;
+  display: block;
+  fill: #FFFFFF;
+  margin-bottom: 20px;
+  position: relative;
+  text-decoration: none;
+
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  &_cover {
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    float: left;
+    height: 150px;
+    width: 150px;
+  }
+
+  &_main {
+    float: left;
+    padding: 20px 25px;
+    width: calc(100% - 150px);
+  }
+
+  &_play {
+    border: 1px solid transparentize(#FFFFFF, 0.75);
+    border-radius: 4px;
+    bottom: 20px;
+    display: inline-block;
+    font-size: 12px;
+    left: 150px + 25px;
+    letter-spacing: 0.5px;
+    line-height: 15px;
+    padding: 7px 16px 6px 28px;
+    position: absolute;
+    text-transform: uppercase;
+    transition: border-color 0.25s;
+
+    svg {
+      left: 8px;
+      opacity: 0.75;
+      position: absolute;
+      top: 8px;
+      transition: opacity 0.25s;
+    }
+
+    &:hover {
+      border-color: #FFFFFF;
+
+      svg {
+        opacity: 1;
+      }
+    }
+  }
+
+  &_title {
+    font-size: 18px;
+    font-weight: 300;
+    line-break: 23px;
+  }
+}

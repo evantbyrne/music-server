@@ -1,11 +1,12 @@
 import { Component, h } from "preact";
 import { connect } from "unistore/preact";
-import IconAdd from './IconAdd';
-import IconPlay from './IconPlay';
-import Loader from './Loader';
+import IconAdd from '../components/IconAdd';
+import IconPlay from '../components/IconPlay';
+import Loader from '../components/Loader';
+import Sidebar from '../components/Sidebar';
 import { actions } from "../store.js";
 
-class SongListLoaded extends Component {
+class SongList extends Component {
 
   onAddNowPlaying(event, song) {
     event.preventDefault();
@@ -29,7 +30,7 @@ class SongListLoaded extends Component {
     }
 
     return (
-      <div class="Container_main" id="songs">
+      <div id="songs">
         {data.map(song => (
           <div class="Song">
             <a class="Song_play" onClick={(event) => this.onPlay(event, song)}>
@@ -46,12 +47,17 @@ class SongListLoaded extends Component {
   }
 };
 
-const SongList = connect([], actions)(scope => {
+const SongListConnection = connect(["token", "user"], actions)(scope => {
   return (
-    <Loader url="/api/songs.json">
-      <SongListLoaded scope={scope} />
-    </Loader>
+    <div className="Container">
+      <Sidebar route="songs" scope={scope} />
+      <div class="Container_main">
+        <Loader url="/api/songs.json">
+          <SongList scope={scope} />
+        </Loader>
+      </div>
+    </div>
   );
 });
 
-export default SongList;
+export default SongListConnection;
