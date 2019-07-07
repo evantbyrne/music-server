@@ -1,8 +1,7 @@
 import { Component, h } from "preact";
 import { connect } from "unistore/preact";
-import IconAdd from '../components/IconAdd';
-import IconPlay from '../components/IconPlay';
 import Sidebar from '../components/Sidebar';
+import Song from '../components/Song';
 import { actions } from "../store.js";
 
 class NowPlaying extends Component {
@@ -34,18 +33,15 @@ class NowPlaying extends Component {
             return null;
           }
           return (
-            <div className={`Song ${scope.current_song === index ? '-playing' : ''}`} key={`now-playing.${index}`}>
-              {scope.current_song !== index && (
-                <a class="Song_play" onClick={(event) => this.onTrack(event, index)}>
-                  <IconPlay />
-                </a>
-              )}
-              <a className="Song_add -active" onClick={(event) => this.onRemoveNowPlaying(event, index)}>
-                <IconAdd />
-              </a>
-              <div className="Song_title">{song.name}</div>
-            </div>
-          );
+            <Song
+              isActive={true}
+              isPlaying={scope.current_song === index}
+              key={`now-playing.${index}`}
+              name={song.name}
+              onAdd={(event) => this.onRemoveNowPlaying(event, index)}
+              onPlay={(event) => this.onTrack(event, index)}
+            />
+          )
         })}
       </div>
     );

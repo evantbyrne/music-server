@@ -34,7 +34,7 @@ class AlbumList extends Component {
     return (
       <div id="albums">
         {data.map(album => (
-          <a class="Album" href={`/albums/${album.id}/`}>
+          <a className="Album" href={`/albums/${album.id}/`}>
             <div className="Album_cover" style={{ backgroundImage: `url(${album.cover})` }}></div>
             <div className="Album_main">
               <div className="Album_title">{album.name}</div>
@@ -54,7 +54,7 @@ const AlbumListConnection = connect(["token", "user"], actions)(scope => {
   return (
     <div className="Container">
       <Sidebar route="albums" scope={scope} />
-      <div class="Container_main">
+      <div className="Container_main">
         <Loader url="/api/albums.json">
           <AlbumList scope={scope} />
         </Loader>
