@@ -1,8 +1,10 @@
 import { Component, h } from "preact";
 import { connect } from "unistore/preact";
+import IconNext from './IconNext';
 import IconPause from './IconPause';
 import IconPlay from './IconPlay';
-import { actions } from "../store.js";
+import { actions } from '../store';
+import { nextSongFromIndex, previousSongFromIndex } from '../utils';
 
 class Player extends Component {
   static getDerivedStateFromProps(props, state) {
@@ -41,6 +43,11 @@ class Player extends Component {
     clearInterval(this.intervalId);
   }
 
+  onTrack(event, songIndex) {
+    event.preventDefault();
+    this.props.scope.track({ songIndex });
+  }
+
   onPause(event) {
     event.preventDefault();
     this.state.audio.pause();
@@ -52,7 +59,9 @@ class Player extends Component {
   }
 
   render(props, state) {
-    if (!props.scope.token) {
+    const { scope } = props;
+
+    if (!scope.token) {
       return null;
     }
 
@@ -65,9 +74,17 @@ class Player extends Component {
     const backgroundImage = (state.song.album
       ? `url(${state.song.album.cover})`
       : null);
+    const next = nextSongFromIndex(scope.current_song, scope.now_playing, scope.now_playing_removed);
+    const previous = previousSongFromIndex(scope.current_song, scope.now_playing, scope.now_playing_removed);
 
     return (
       <div className="Player">
+        {previous && (
+          <a className="Player_tracking -previous" onClick={(event) => this.onTrack(event, previous.index)}>
+            <div className="Player_tracking-cover" style={{ backgroundImage: previous.song.album ? `url(${previous.song.album.cover})` : null }}></div>
+            <IconNext />
+          </a>
+        )}
         <div className="Player_song">
           <div className="Player_song-cover" style={{ backgroundImage }}></div>
           <div className="Player_song-title">{state.song.name}</div>
@@ -93,6 +110,12 @@ class Player extends Component {
         <div className="Player_progress">
           <div className="Player_progress-bar" style={{ width: `${state.percent}%` }}></div>
         </div>
+        {next && (
+          <a className="Player_tracking -next" onClick={(event) => this.onTrack(event, next.index)}>
+            <div className="Player_tracking-cover" style={{ backgroundImage: next.song.album ? `url(${next.song.album.cover})` : null }}></div>
+            <IconNext />
+          </a>
+        )}
       </div>
     );
   }
@@ -114,7 +137,7 @@ class Player extends Component {
   }
 }
 
-const PlayerView = connect(["current_song", "now_playing", "token"], actions)(scope => {
+const PlayerView = connect(["current_song", "now_playing", "now_playing_removed", "token"], actions)(scope => {
   return (
     <Player scope={scope} />
   );

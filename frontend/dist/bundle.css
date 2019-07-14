@@ -45,6 +45,7 @@ html {
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 4px;
     bottom: 20px;
+    cursor: pointer;
     display: inline-block;
     font-size: 12px;
     left: 175px;
@@ -194,10 +195,13 @@ html {
     line-height: 14px;
     padding: 5px 0 0 50px;
     position: absolute;
-    top: 15px; }
+    top: 15px;
+    transition: all 0.25s ease-in-out; }
+  .Player_tracking.-previous ~ .Player_song {
+    transform: translateX(40px); }
   .Player_song-album {
     margin-top: 3px; }
-  .Player_song-cover {
+  .Player_song-cover, .Player_tracking-cover {
     background-color: #000000;
     background-position: center;
     background-size: contain;
@@ -206,6 +210,37 @@ html {
     position: absolute;
     top: 0;
     width: 40px; }
+  .Player_tracking {
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    top: 15px;
+    width: 40px; }
+    .Player_tracking svg {
+      fill: #D8D8D8;
+      left: 50%;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s; }
+    .Player_tracking:hover svg {
+      fill: #ffffff; }
+    .Player_tracking.-next {
+      right: 7px; }
+    .Player_tracking.-previous {
+      left: 7px; }
+      .Player_tracking.-previous svg {
+        transform: translate(-50%, -50%) scaleX(-1); }
+  .Player_tracking-cover {
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, black 100%);
+    transition: mask-image 0.25s; }
+    .Player_tracking-cover:hover {
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), black); }
+      .Player_tracking.-previous .Player_tracking-cover:hover {
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0), black); }
+    .Player_tracking.-previous .Player_tracking-cover {
+      mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 50%, black 100%); }
 
 .Sidebar_nav {
   display: block;

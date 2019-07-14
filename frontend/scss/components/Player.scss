@@ -76,13 +76,19 @@
     padding: 5px 0 0 50px;
     position: absolute;
     top: 15px;
+    transition: all 0.25s ease-in-out;
+  }
+
+  &_tracking.-previous ~ &_song {
+    transform: translateX(40px);
   }
 
   &_song-album {
     margin-top: 3px;
   }
 
-  &_song-cover {
+  &_song-cover,
+  &_tracking-cover {
     background-color: #000000;
     background-position: center;
     background-size: contain;
@@ -91,5 +97,58 @@
     position: absolute;
     top: 0;
     width: 40px;
+  }
+
+  &_tracking {
+    cursor: pointer;
+    height: 40px;
+    position: absolute;
+    top: 15px;
+    width: 40px;
+
+    svg {
+      fill: #D8D8D8;
+      left: 50%;
+      pointer-events: none;
+      position: absolute;
+      top: 50%;
+      transform: translate(-50%, -50%);
+      transition: all 0.25s;
+    }
+
+    &:hover {
+      svg {
+        fill: #ffffff;
+      }
+    }
+
+    &.-next {
+      right: 7px;
+    }
+
+    &.-previous {
+      left: 7px;
+
+      svg {
+        transform: translate(-50%, -50%) scaleX(-1);
+      }
+    }
+  }
+
+  &_tracking-cover {
+    mask-image: linear-gradient(to right, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%);
+    transition: mask-image 0.25s;
+
+    &:hover {
+      mask-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+
+      .Player_tracking.-previous & {
+        mask-image: linear-gradient(to left, rgba(0, 0, 0, 0), rgba(0, 0, 0, 1));
+      }
+    }
+
+    .Player_tracking.-previous & {
+      mask-image: linear-gradient(to left, rgba(0, 0, 0, 0) 50%, rgba(0, 0, 0, 1) 100%);
+    }
   }
 }

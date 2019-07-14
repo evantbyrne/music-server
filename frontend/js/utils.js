@@ -26,3 +26,41 @@ export function currentSongFromIndex(currentSongIndex, nowPlaying) {
     ? nowPlaying.find((song, index) => currentSongIndex === index)
     : null);
 }
+
+
+/**
+ * @param {int|null} currentSongIndex The current song index in now playing.
+ * @param {Array} nowPlaying An array of songs.
+ * @param {Array} nowPlayingRemoved An array of now playing indexes.
+ * @return {Object|null} Object containing the next song and its now playing index on success, null otherwise.
+ */
+export function nextSongFromIndex(currentSongIndex, nowPlaying, nowPlayingRemoved) {
+  for (let i = currentSongIndex + 1; i < nowPlaying.length; i++) {
+    if (!nowPlayingRemoved.includes(i)) {
+      return {
+        index: i,
+        song: nowPlaying[i],
+      };
+    }
+  }
+  return null;
+}
+
+
+/**
+ * @param {int|null} currentSongIndex The current song index in now playing.
+ * @param {Array} nowPlaying An array of songs.
+ * @param {Array} nowPlayingRemoved An array of now playing indexes.
+ * @return {Object|null} Object containing the previous song and its now playing index on success, null otherwise.
+ */
+export function previousSongFromIndex(currentSongIndex, nowPlaying, nowPlayingRemoved) {
+  for (let i = currentSongIndex - 1; i >= 0 && i < nowPlaying.length; i--) {
+    if (!nowPlayingRemoved.includes(i)) {
+      return {
+        index: i,
+        song: nowPlaying[i],
+      };
+    }
+  }
+  return null;
+}
