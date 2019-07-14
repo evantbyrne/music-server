@@ -42,6 +42,12 @@
     }
   }
 
+  &_pause {
+    &.-loading {
+      opacity: 0.5;
+    }
+  }
+
   &_play {
     svg {
       margin-top: 1px;

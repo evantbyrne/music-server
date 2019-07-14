@@ -1,3 +1,4 @@
+import { Howl } from 'howler';
 import { Component, h } from "preact";
 import { connect } from "unistore/preact";
 import IconNext from './IconNext';
@@ -15,7 +16,9 @@ class Player extends Component {
       }
       if (scope.current_song !== null) {
         state.song = scope.now_playing[scope.current_song];
-        state.audio = new Audio(state.song.file);
+        state.audio = new Howl({
+          src: [state.song.file],
+        });
         state.audio.play();
       } else {
         state.audio = null;
@@ -58,6 +61,13 @@ class Player extends Component {
     this.state.audio.play();
   }
 
+  onSeek(event) {
+    const bounds = event.currentTarget.getBoundingClientRect();
+    const percent = (event.clientX - bounds.left) / event.currentTarget.clientWidth;
+    const time = this.state.audio.duration() * percent;
+    this.state.audio.seek(time);
+  }
+
   render(props, state) {
     const { scope } = props;
 
@@ -74,6 +84,8 @@ class Player extends Component {
     const backgroundImage = (state.song.album
       ? `url(${state.song.album.cover})`
       : null);
+    const isLoading = state.audio.duration() == 0;
+    const isPlaying = state.audio.playing();
     const next = nextSongFromIndex(scope.current_song, scope.now_playing, scope.now_playing_removed);
     const previous = previousSongFromIndex(scope.current_song, scope.now_playing, scope.now_playing_removed);
 
@@ -97,17 +109,22 @@ class Player extends Component {
             </div>
           )}
         </div>
-        {!state.audio.paused && (
+        {isLoading && (
+          <div className="Player_pause -loading">
+            <IconPause />
+          </div>
+        )}
+        {!isLoading && isPlaying && (
           <a className="Player_pause" href="#" onClick={(event) => this.onPause(event)}>
             <IconPause />
           </a>
         )}
-        {state.audio.paused && (
+        {!isLoading && !isPlaying && (
           <a className="Player_play" href="#" onClick={(event) => this.onPlay(event)}>
             <IconPlay />
           </a>
         )}
-        <div className="Player_progress">
+        <div className="Player_progress" onClick={(event) => this.onSeek(event)}>
           <div className="Player_progress-bar" style={{ width: `${state.percent}%` }}></div>
         </div>
         {next && (
@@ -121,16 +138,17 @@ class Player extends Component {
   }
 
   timer() {
-    if (this.state.audio && this.state.audio.duration) {
-      if (this.state.audio.ended) {
+    if (this.state.audio && this.state.audio.duration()) {
+      const seek = this.state.audio.seek();
+      if (!this.state.audio.playing() && seek == 0) {
         this.setState({
           audio: null,
           percent: 100,
         });
-        this.props.scope.next();
+        this.props.scope.next()
       } else {
         this.setState({
-          percent: this.state.audio.currentTime / this.state.audio.duration * 100.0,
+          percent: seek / this.state.audio.duration() * 100.0,
         });
       }
     }

@@ -170,6 +170,8 @@ html {
       transition: all 0.25s; }
     .Player_pause:hover svg, .Player_play:hover svg {
       fill: #ffffff; }
+  .Player_pause.-loading {
+    opacity: 0.5; }
   .Player_play svg {
     margin-top: 1px; }
   .Player_progress {
