@@ -55,22 +55,28 @@ class Login extends Component {
     const mutate = this.mutate.bind(this);
 
     return (
-      <div className="Container">
-        <form className="Login" onSubmit={this.onLogin}>
-          <input className="Login_field"
-            name="username"
-            onChange={(e) => mutate(e, 'username')}
-            placeholder="Username..."
-            value={state.username} />
-          <input className="Login_field"
-            name="password"
-            onChange={(e) => mutate(e, 'password')}
-            placeholder="Password..."
-            type="password"
-            value={state.password} />
-          <button className="Login_button"
+      <div className="Login">
+        <form className="Login_container" onSubmit={this.onLogin}>
+          <label class="Input">
+            <div class="Input_label">Username</div>
+            <input className="Input_field"
+              name="username"
+              onChange={(e) => mutate(e, 'username')}
+              placeholder="…"
+              value={state.username} />
+          </label>
+          <label class="Input">
+            <div class="Input_label">Password</div>
+            <input className="Input_field"
+              name="password"
+              onChange={(e) => mutate(e, 'password')}
+              placeholder="…"
+              type="password"
+              value={state.password} />
+          </label>
+          <button className="Button -primary"
             disabled={false}
-            onClick={this.onLogin}>Log In</button>
+            onClick={this.onLogin}>Sign In</button>
         </form>
       </div>
     );

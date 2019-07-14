@@ -1,0 +1,29 @@
+.Button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid transparentize($white, 0.75);
+  border-radius: 4px;
+  color: $white;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 15px;
+  padding: 8px 14px 7px;
+  text-transform: uppercase;
+  transition: border-color 0.25s;
+
+  &.-primary {
+    border-color: $blue;
+  }
+
+  &:hover {
+    border-color: $white;
+  }
+
+  &[disabled] {
+    cursor: wait;
+    opacity: 0.5;
+  }
+}

@@ -1,0 +1,35 @@
+.Input {
+  display: block;
+  margin-bottom: 25px;
+
+  &_field {
+    appearance: none;
+    background: transparent;
+    border: 1px solid transparentize($white, 0.75);
+    border-radius: 4px;
+    color: $white;
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    height: 44px;
+    letter-spacing: 0.5px;
+    line-height: 44px;
+    padding: 0 14px;
+    width: 100%;
+
+    .Input.-error & {
+      border-color: $red;
+    }
+  }
+
+  &_label {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 23px;
+    margin-bottom: 10px;
+
+    .Input.-error & {
+      color: $red;
+    }
+  }
+}

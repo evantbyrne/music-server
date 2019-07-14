@@ -1,3 +1,7 @@
+$blue: #1060FF;
+$red: red;
+$white: #FFFFFF;
+
 * {
   box-sizing: border-box;
   margin: 0;
@@ -11,7 +15,9 @@ html {
 }
 
 @import "components/Album";
+@import "components/Button";
 @import "components/Container";
+@import "components/Input";
 @import "components/Loading";
 @import "components/Login";
 @import "components/Player";

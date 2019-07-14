@@ -72,6 +72,29 @@ html {
     font-weight: 300;
     line-height: 23px; }
 
+.Button {
+  appearance: none;
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+  border-radius: 4px;
+  color: #FFFFFF;
+  cursor: pointer;
+  display: inline-block;
+  font-size: 12px;
+  font-weight: 300;
+  letter-spacing: 0.5px;
+  line-height: 15px;
+  padding: 8px 14px 7px;
+  text-transform: uppercase;
+  transition: border-color 0.25s; }
+  .Button.-primary {
+    border-color: #1060FF; }
+  .Button:hover {
+    border-color: #FFFFFF; }
+  .Button[disabled] {
+    cursor: wait;
+    opacity: 0.5; }
+
 .Container {
   background: linear-gradient(to bottom, #43353A, #20242C);
   bottom: 0;
@@ -89,6 +112,33 @@ html {
     right: 0;
     top: 0; }
 
+.Input {
+  display: block;
+  margin-bottom: 25px; }
+  .Input_field {
+    appearance: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.25);
+    border-radius: 4px;
+    color: #FFFFFF;
+    display: block;
+    font-size: 14px;
+    font-weight: 300;
+    height: 44px;
+    letter-spacing: 0.5px;
+    line-height: 44px;
+    padding: 0 14px;
+    width: 100%; }
+    .Input.-error .Input_field {
+      border-color: red; }
+  .Input_label {
+    font-size: 18px;
+    font-weight: 300;
+    line-height: 23px;
+    margin-bottom: 10px; }
+    .Input.-error .Input_label {
+      color: red; }
+
 .Loading {
   background: #000;
   color: #fff;
@@ -101,42 +151,19 @@ html {
   transform: translateX(-50%); }
 
 .Login {
-  border: 2px solid black;
-  left: 50%;
-  position: absolute;
-  top: 50%;
-  transform: translate(-50%, -50%);
-  width: 400px; }
-  .Login_button {
-    appearance: none;
-    background: black;
-    border: 1px solid black;
-    border-radius: 3px;
-    color: white;
-    display: block;
-    font-size: 16px;
-    margin: 20px 60px 10px;
-    padding: 12px;
-    cursor: pointer;
-    text-align: center;
-    width: calc(100% - 120px); }
-    .Login_button[disabled] {
-      background: gray;
-      color: black;
-      cursor: wait; }
-  .Login_field {
-    border: 0;
-    border-bottom: 2px dashed black;
-    display: block;
-    font-size: 24px;
-    margin: 10px;
-    padding: 20px 20px 19px 20px;
-    width: calc(100% - 20px); }
-    .Login_field.-error {
-      border-color: red; }
-    .Login_field.-text {
-      font-size: 16px;
-      height: 300px; }
+  background: #1B1D21;
+  bottom: 0;
+  left: 0;
+  overflow: auto;
+  padding: 70px 20px 20px;
+  position: fixed;
+  right: 0;
+  top: 0; }
+  .Login_container {
+    background: rgba(216, 216, 216, 0.04);
+    margin: auto;
+    max-width: 640px;
+    padding: 20px; }
 
 .Player {
   background: rgba(255, 255, 255, 0.1);
