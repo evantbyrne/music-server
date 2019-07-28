@@ -2,6 +2,7 @@ import { Component, h } from "preact";
 import { connect } from "unistore/preact";
 import Sidebar from '../components/Sidebar';
 import Song from '../components/Song';
+import UserLoader from '../components/UserLoader';
 import { actions } from "../store.js";
 
 class NowPlaying extends Component {
@@ -48,10 +49,11 @@ class NowPlaying extends Component {
   }
 };
 
-const NowPlayingConnection = connect(["current_song", "now_playing", "now_playing_removed", "token", "user"], actions)(scope => {
+const NowPlayingConnection = connect(["current_song", "now_playing", "now_playing_removed", "user"], actions)(scope => {
   return (
     <div className="Container">
-      <Sidebar route="now-playing" scope={scope} />
+      <Sidebar route="now-playing" />
+      <UserLoader />
       <div className="Container_main">
         <NowPlaying scope={scope} />
       </div>

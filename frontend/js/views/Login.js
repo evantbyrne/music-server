@@ -10,7 +10,7 @@ class Login extends Component {
   };
 
   static getDerivedStateFromProps(props, state) {
-    if (props.scope.token) {
+    if (props.scope.user) {
       props.scope.viewDashboard();
       route("/");
     }
@@ -47,7 +47,7 @@ class Login extends Component {
       method: "post",
       onSuccess: scope.loginSuccess,
       scope,
-      url: "/api/token/",
+      url: "/api/auth/login/",
     });
   }
 
@@ -83,7 +83,7 @@ class Login extends Component {
   }
 }
 
-const LoginConnection = connect(["loading_count", "token"], actions)(scope => {
+const LoginConnection = connect(["loading_count", "user"], actions)(scope => {
   return (
     <Login scope={scope} />
   );

@@ -71,7 +71,7 @@ class Player extends Component {
   render(props, state) {
     const { scope } = props;
 
-    if (!scope.token) {
+    if (!scope.user) {
       return null;
     }
 
@@ -155,7 +155,7 @@ class Player extends Component {
   }
 }
 
-const PlayerView = connect(["current_song", "now_playing", "now_playing_removed", "token"], actions)(scope => {
+const PlayerView = connect(["current_song", "now_playing", "now_playing_removed", "user"], actions)(scope => {
   return (
     <Player scope={scope} />
   );

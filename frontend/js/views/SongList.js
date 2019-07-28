@@ -3,6 +3,7 @@ import { connect } from "unistore/preact";
 import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 import Song from '../components/Song';
+import UserLoader from '../components/UserLoader';
 import { actions } from "../store.js";
 import { currentSongFromIndex } from "../utils.js";
 
@@ -41,7 +42,7 @@ class SongList extends Component {
 
     return (
       <div id="songs">
-        {data.map((song, index) => {
+        {data.results.songs.map((song, index) => {
           const isPlaying = (currentSongObject ? currentSongObject.id === song.id : false);
           const onAdd = (isPlaying
             ? (event) => this.onRemoveCurrentSong(event)
@@ -62,12 +63,13 @@ class SongList extends Component {
   }
 };
 
-const SongListConnection = connect(["current_song", "now_playing", "token", "user"], actions)(scope => {
+const SongListConnection = connect(["current_song", "now_playing", "user"], actions)(scope => {
   return (
     <div className="Container">
-      <Sidebar route="songs" scope={scope} />
+      <Sidebar route="songs" />
+      <UserLoader />
       <div className="Container_main">
-        <Loader url="/api/songs.json">
+        <Loader url="/api/songs/">
           <SongList scope={scope} />
         </Loader>
       </div>

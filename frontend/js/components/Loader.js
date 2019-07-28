@@ -8,7 +8,6 @@ class Loader extends Component {
   state = {
     data: null,
     is_loading: false,
-    url: null
   };
 
   componentDidMount() {
@@ -29,12 +28,6 @@ class Loader extends Component {
       method: "GET",
       url: scope.url,
     };
-
-    if (scope.token) {
-      params.headers = {
-        Authorization: `Token ${scope.token}`,
-      };
-    }
 
     this.setState({
       data: null,
@@ -76,7 +69,7 @@ class Loader extends Component {
   }
 }
 
-const LoaderView = connect(["token"], actions)(scope => {
+const LoaderView = connect([], actions)(scope => {
   return (
     <Loader scope={scope} />
   );

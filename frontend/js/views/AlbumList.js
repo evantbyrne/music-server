@@ -3,6 +3,7 @@ import { connect } from "unistore/preact";
 import IconPlay from '../components/IconPlay';
 import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
+import UserLoader from '../components/UserLoader';
 import { actions } from "../store.js";
 
 class AlbumList extends Component {
@@ -25,7 +26,7 @@ class AlbumList extends Component {
   }
 
   render(props, state) {
-    const { data, is_loading } = props;
+    const { data, is_loading, scope } = props;
 
     if (data === null || is_loading) {
       return null;
@@ -33,8 +34,8 @@ class AlbumList extends Component {
 
     return (
       <div id="albums">
-        {data.map(album => (
-          <a className="Album" href={`/albums/${album.id}/`}>
+        {data.results.albums.map(album => (
+          <a className="Album" href={`/albums/${album.id}/`} key={`album-list_${album.id}`}>
             <div className="Album_cover" style={{ backgroundImage: `url(${album.cover})` }}></div>
             <div className="Album_main">
               <div className="Album_title">{album.name}</div>
@@ -50,12 +51,13 @@ class AlbumList extends Component {
   }
 };
 
-const AlbumListConnection = connect(["token", "user"], actions)(scope => {
+const AlbumListConnection = connect(["loading_count", "user"], actions)(scope => {
   return (
     <div className="Container">
-      <Sidebar route="albums" scope={scope} />
+      <Sidebar route="albums" />
+      <UserLoader />
       <div className="Container_main">
-        <Loader url="/api/albums.json">
+        <Loader url="/api/albums/">
           <AlbumList scope={scope} />
         </Loader>
       </div>

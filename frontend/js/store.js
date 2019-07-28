@@ -10,8 +10,7 @@ export let store  = createStore({
   now_playing: [],
   now_playing_removed: [],
   title: null,
-  token: Cookies.get("token", null),
-  user: null
+  user: null,
 });
 
 export let actions = (store) => ({
@@ -63,18 +62,27 @@ export let actions = (store) => ({
     };
   },
 
-  load: (state, { data = null, method, onSuccess = null, scope, token = null, url }) => {
+  load: (state, { data = null, method, onSuccess = null, scope, url }) => {
     let params = {
       data,
       method,
       url,
     };
-  
+
+    // const csrfToken = Cookies.get("csrftoken");
+    // if (csrfToken) {
+    //   params.headers = {
+    //     "X-CSRFToken": csrfToken,
+    //   };
+    // }
+
+    /*
     if (token) {
       params.headers = {
         Authorization: `Token ${token}`
       };
     }
+    */
 
     scope.ajaxBegin();
     axios(params)
@@ -96,14 +104,6 @@ export let actions = (store) => ({
   },
 
   loginSuccess: (state, data) => {
-    Cookies.set("token", data.json.token);
-    return {
-      token: data.json.token,
-    };
-  },
-
-  logout: () => {
-    Cookies.remove("token");
     window.location.href = "/";
   },
 
@@ -140,7 +140,7 @@ export let actions = (store) => ({
 
   userLoadSuccess: (state, data) => {
     return {
-      user: data.json,
+      user: data.json.results.user,
     };
   },
 
@@ -152,9 +152,9 @@ export let actions = (store) => ({
 
   viewLogin: () => {
     return {
-      loading_count: 0,
+      // loading_count: 0,
       title: "Log In",
-      token: null,
+      user: null,
     };
   },
 

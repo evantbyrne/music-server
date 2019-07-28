@@ -4,6 +4,7 @@ import IconPlay from '../components/IconPlay';
 import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
 import Song from '../components/Song';
+import UserLoader from '../components/UserLoader';
 import { actions } from "../store.js";
 import { artistsFromSongList, currentSongFromIndex } from "../utils.js";
 
@@ -36,7 +37,7 @@ class AlbumDetail extends Component {
 
   onSongAddNowPlaying(event, song) {
     event.preventDefault();
-    song["album"] = this.props.data;
+    song["album"] = this.props.data.results.album;
     this.props.scope.append({
       song,
     });
@@ -44,7 +45,7 @@ class AlbumDetail extends Component {
 
   onSongPlay(event, song) {
     event.preventDefault();
-    song["album"] = this.props.data;
+    song["album"] = this.props.data.results.album;
     this.props.scope.appendAndPlay({
       song,
     });
@@ -57,25 +58,26 @@ class AlbumDetail extends Component {
       return null;
     }
 
-    const artists = artistsFromSongList(data.songs);
+    const album = data.results.album;
+    const artists = artistsFromSongList(album.songs);
     const currentSongObject = currentSongFromIndex(scope.current_song, scope.now_playing);
 
     return (
       <div id="albums-detail">
         <div className="Album -detail">
-          <div className="Album_cover" style={{ backgroundImage: `url(${data.cover})` }}></div>
+          <div className="Album_cover" style={{ backgroundImage: `url(${album.cover})` }}></div>
           <div className="Album_main">
-            <div className="Album_title">{data.name}</div>
+            <div className="Album_title">{album.name}</div>
             {artists.length > 0 && (
               <div className="Album_meta -artists">{artists.join(", ")}</div>
             )}
           </div>
-          <a className="Album_play" onClick={(event) => this.onPlay(event, data)}>
+          <a className="Album_play" onClick={(event) => this.onPlay(event, album)}>
             <IconPlay />
             <span>Play</span>
           </a>
         </div>
-        {data.songs.map((song, index) => {
+        {album.songs.map((song, index) => {
           const isPlaying = (currentSongObject ? currentSongObject.id === song.id : false);
           const onAdd = (isPlaying
             ? (event) => this.onRemoveCurrentSong(event)
@@ -96,12 +98,13 @@ class AlbumDetail extends Component {
   }
 };
 
-const AlbumDetailConnection = connect(["current_song", "now_playing", "token", "user"], actions)(scope => {
+const AlbumDetailConnection = connect(["current_song", "now_playing", "user"], actions)(scope => {
   return (
     <div className="Container">
-      <Sidebar route="albums.detail" scope={scope} />
+      <Sidebar route="albums.detail" />
+      <UserLoader />
       <div className="Container_main">
-        <Loader url={`/api/albums/${scope.albumId}.json`}>
+        <Loader url={`/api/albums/${scope.albumId}/`}>
           <AlbumDetail scope={scope} />
         </Loader>
       </div>
