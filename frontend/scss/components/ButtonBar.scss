@@ -1,0 +1,20 @@
+.ButtonBar {
+  &::after {
+    clear: both;
+    content: "";
+    display: block;
+  }
+
+  .Button {
+    float: left;
+    margin-left: 10px;
+
+    &:first-child {
+      margin-left: 0;
+    }
+
+    &.-right {
+      float: right;
+    }
+  }
+}

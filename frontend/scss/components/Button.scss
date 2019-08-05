@@ -6,13 +6,19 @@
   color: $white;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.5px;
   line-height: 15px;
   padding: 8px 14px 7px;
+  text-decoration: none;
   text-transform: uppercase;
   transition: border-color 0.25s;
+
+  &.-danger {
+    border-color: $red;
+  }
 
   &.-primary {
     border-color: $blue;

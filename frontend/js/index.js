@@ -5,6 +5,8 @@ import Login from './views/Login.js';
 import Loading from './components/Loading.js';
 import Player from './components/Player.js';
 import { store } from './store.js';
+import AlbumCreate from './views/AlbumCreate.js';
+import AlbumDelete from './views/AlbumDelete.js';
 import AlbumDetail from './views/AlbumDetail.js';
 import AlbumList from './views/AlbumList.js';
 import NowPlaying from './views/NowPlaying.js';
@@ -20,6 +22,8 @@ render((
   <Provider store={store}>
     <div>
       <Router>
+        <AlbumCreate path="/upload/" />
+        <AlbumDelete path="/albums/:albumId/delete/" />
         <AlbumDetail path="/albums/:albumId/" />
         <AlbumList path="/albums/" />
         <NowPlaying path="/now-playing/" />

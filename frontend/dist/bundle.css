@@ -30,6 +30,10 @@ html {
     .Album.-detail .Album_cover {
       height: 250px;
       width: 250px; }
+  .Album_delete {
+    bottom: 20px;
+    position: absolute;
+    right: 20px; }
   .Album_main {
     float: left;
     padding: 20px 25px;
@@ -80,13 +84,17 @@ html {
   color: #FFFFFF;
   cursor: pointer;
   display: inline-block;
+  font-family: 'Source Sans Pro', sans-serif;
   font-size: 12px;
   font-weight: 300;
   letter-spacing: 0.5px;
   line-height: 15px;
   padding: 8px 14px 7px;
+  text-decoration: none;
   text-transform: uppercase;
   transition: border-color 0.25s; }
+  .Button.-danger {
+    border-color: red; }
   .Button.-primary {
     border-color: #1060FF; }
   .Button:hover {
@@ -94,6 +102,19 @@ html {
   .Button[disabled] {
     cursor: wait;
     opacity: 0.5; }
+
+.ButtonBar::after {
+  clear: both;
+  content: "";
+  display: block; }
+
+.ButtonBar .Button {
+  float: left;
+  margin-left: 10px; }
+  .ButtonBar .Button:first-child {
+    margin-left: 0; }
+  .ButtonBar .Button.-right {
+    float: right; }
 
 .Container {
   background: linear-gradient(to bottom, #43353A, #20242C);
@@ -115,8 +136,18 @@ html {
 .Input {
   display: block;
   margin-bottom: 25px; }
+  .Input_drop-arrow {
+    fill: #FFFFFF;
+    height: 12px;
+    pointer-events: none;
+    position: absolute;
+    right: 16px;
+    top: 17px;
+    transform: rotate(90deg);
+    width: 12px; }
   .Input_field {
     appearance: none;
+    -webkit-appearance: none;
     background: transparent;
     border: 1px solid rgba(255, 255, 255, 0.25);
     border-radius: 4px;
@@ -138,6 +169,8 @@ html {
     margin-bottom: 10px; }
     .Input.-error .Input_label {
       color: red; }
+  .Input_select-container {
+    position: relative; }
 
 .Loading {
   background: #000;
@@ -164,6 +197,8 @@ html {
     margin: auto;
     max-width: 640px;
     padding: 20px; }
+  .Login_paragraph {
+    margin-bottom: 20px; }
 
 .Player {
   background: rgba(255, 255, 255, 0.1);

@@ -76,6 +76,7 @@ class AlbumDetail extends Component {
             <IconPlay />
             <span>Play</span>
           </a>
+          <a className="Album_delete Button" href={`/albums/${album.id}/delete/`}>Delete</a>
         </div>
         {album.songs.map((song, index) => {
           const isPlaying = (currentSongObject ? currentSongObject.id === song.id : false);

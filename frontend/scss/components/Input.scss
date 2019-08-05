@@ -2,8 +2,20 @@
   display: block;
   margin-bottom: 25px;
 
+  &_drop-arrow {
+    fill: $white;
+    height: 12px;
+    pointer-events: none;
+    position: absolute;
+    right: 16px;
+    top: 17px;
+    transform: rotate(90deg);
+    width: 12px;
+  }
+
   &_field {
     appearance: none;
+    -webkit-appearance: none;
     background: transparent;
     border: 1px solid transparentize($white, 0.75);
     border-radius: 4px;
@@ -31,5 +43,9 @@
     .Input.-error & {
       color: $red;
     }
+  }
+
+  &_select-container {
+    position: relative;
   }
 }
