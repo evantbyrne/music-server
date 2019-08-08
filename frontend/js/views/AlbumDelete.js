@@ -28,17 +28,15 @@ class AlbumDelete extends Component {
     }
 
     return (
-      <div className="Login">
-        <form className="Login_container" onSubmit={this.onLogin}>
-          <p className="Login_paragraph">Are you sure you want to delete {data.results.album.name}?</p>
-          <div className="ButtonBar">
-            <a className="Button" href={`/albums/${scope.albumId}/`}>No, Do Not Delete</a>
-            <button className="Button -danger -right"
-              disabled={false}
-              onClick={this.onConfirm}>Yes, Delete</button>
-          </div>
-        </form>
-      </div>
+      <form className="Form" onSubmit={this.onLogin}>
+        <p className="Form_paragraph">Are you sure you want to delete {data.results.album.name}?</p>
+        <div className="ButtonBar">
+          <a className="Button" href={`/albums/${scope.albumId}/`}>No, Do Not Delete</a>
+          <button className="Button -danger -right"
+            disabled={false}
+            onClick={this.onConfirm}>Yes, Delete</button>
+        </div>
+      </form>
     );
   }
 }

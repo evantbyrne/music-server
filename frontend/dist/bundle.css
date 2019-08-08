@@ -133,6 +133,14 @@ html {
     right: 0;
     top: 0; }
 
+.Form {
+  background: rgba(216, 216, 216, 0.04);
+  margin: auto;
+  max-width: 640px;
+  padding: 20px; }
+  .Form_paragraph {
+    margin-bottom: 20px; }
+
 .Input {
   display: block;
   margin-bottom: 25px; }
@@ -192,13 +200,6 @@ html {
   position: fixed;
   right: 0;
   top: 0; }
-  .Login_container {
-    background: rgba(216, 216, 216, 0.04);
-    margin: auto;
-    max-width: 640px;
-    padding: 20px; }
-  .Login_paragraph {
-    margin-bottom: 20px; }
 
 .Player {
   background: rgba(255, 255, 255, 0.1);

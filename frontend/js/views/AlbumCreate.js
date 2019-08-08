@@ -72,39 +72,37 @@ class AlbumCreate extends Component {
     const mutate = this.mutate.bind(this);
 
     return (
-      <div className="Login">
-        <form className="Login_container" onSubmit={this.onLogin}>
-          <label class={`Input ${errors.name ? "-error": ""}`}>
-            <div class="Input_label">Name</div>
-            <input className="Input_field"
-              name="name"
-              onChange={(e) => mutate(e, 'name')}
+      <form className="Form" onSubmit={this.onLogin}>
+        <label class={`Input ${errors.name ? "-error": ""}`}>
+          <div class="Input_label">Name</div>
+          <input className="Input_field"
+            name="name"
+            onChange={(e) => mutate(e, 'name')}
+            placeholder="…"
+            value={state.name} />
+        </label>
+        <label class={`Input ${errors.artist ? "-error": ""}`}>
+          <div class="Input_label">Artist</div>
+          <div class="Input_select-container">
+            <select className="Input_field"
+              name="artist"
+              onChange={(e) => mutate(e, 'artist')}
               placeholder="…"
-              value={state.name} />
-          </label>
-          <label class={`Input ${errors.artist ? "-error": ""}`}>
-            <div class="Input_label">Artist</div>
-            <div class="Input_select-container">
-              <select className="Input_field"
-                name="artist"
-                onChange={(e) => mutate(e, 'artist')}
-                placeholder="…"
-              >
-                <option value="">Select...</option>
-                {data.results.artists.map(artist => (
-                  <option value={artist.id} selected={state.artist == artist.id}>
-                    {artist.name}
-                  </option>
-                ))}
-              </select>
-              <IconPlay classes="Input_drop-arrow" />
-            </div>
-          </label>
-          <button className="Button -primary"
-            disabled={false}
-            onClick={this.onSubmit}>Create</button>
-        </form>
-      </div>
+            >
+              <option value="">Select...</option>
+              {data.results.artists.map(artist => (
+                <option value={artist.id} selected={state.artist == artist.id}>
+                  {artist.name}
+                </option>
+              ))}
+            </select>
+            <IconPlay classes="Input_drop-arrow" />
+          </div>
+        </label>
+        <button className="Button -primary"
+          disabled={false}
+          onClick={this.onSubmit}>Create</button>
+      </form>
     );
   }
 }

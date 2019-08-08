@@ -1,0 +1,10 @@
+.Form {
+  background: transparentize(#D8D8D8, 0.96);
+  margin: auto;
+  max-width: 640px;
+  padding: 20px;
+
+  &_paragraph {
+    margin-bottom: 20px;
+  }
+}

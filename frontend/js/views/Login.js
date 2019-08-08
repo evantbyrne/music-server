@@ -56,7 +56,7 @@ class Login extends Component {
 
     return (
       <div className="Login">
-        <form className="Login_container" onSubmit={this.onLogin}>
+        <form className="Form" onSubmit={this.onLogin}>
           <label class="Input">
             <div class="Input_label">Username</div>
             <input className="Input_field"
