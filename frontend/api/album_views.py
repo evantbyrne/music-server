@@ -12,6 +12,7 @@ class AlbumCreateForm(forms.ModelForm):
     class Meta:
         fields = (
             "artist",
+            "cover",
             "name",
         )
         model = Album
@@ -20,25 +21,17 @@ class AlbumCreateForm(forms.ModelForm):
 @require_POST
 @csrf_exempt
 def album_create(request: HttpRequest) -> JsonResponse:
-    data = json.loads(request.body)
-    if type(data) == dict:
-        form = AlbumCreateForm({
-            "artist": data.get("artist"),
-            "name": data.get("name"),
-        })
-        if not form.is_valid():
-            return JsonResponse({
-                "error": form.errors.get_json_data(),
-            }, status=403)
-        album = form.save()
+    form = AlbumCreateForm(request.POST, request.FILES)
+    if not form.is_valid():
         return JsonResponse({
-            "results": {
-                "album": serialize_album(album),
-            },
-        })
+            "error": form.errors.get_json_data(),
+        }, status=403)
+    album = form.save()
     return JsonResponse({
-        "error": "Requires JSON body containing 'artist' and 'name'.",
-    }, status=403)
+        "results": {
+            "album": serialize_album(album),
+        },
+    })
 
 
 @require_POST

@@ -153,7 +153,7 @@ html {
     top: 17px;
     transform: rotate(90deg);
     width: 12px; }
-  .Input_field {
+  .Input_field, .Input_file {
     appearance: none;
     -webkit-appearance: none;
     background: transparent;
@@ -161,6 +161,7 @@ html {
     border-radius: 4px;
     color: #FFFFFF;
     display: block;
+    font-family: 'Source Sans Pro', sans-serif;
     font-size: 14px;
     font-weight: 300;
     height: 44px;
@@ -168,8 +169,25 @@ html {
     line-height: 44px;
     padding: 0 14px;
     width: 100%; }
-    .Input.-error .Input_field {
+    .Input.-error .Input_field, .Input.-error .Input_file {
       border-color: red; }
+  .Input_file div {
+    position: relative; }
+    .Input_file div a {
+      display: block;
+      height: 30px;
+      position: absolute;
+      right: -9px;
+      top: 6px;
+      width: 30px; }
+      .Input_file div a svg {
+        fill: #FFFFFF;
+        right: 9px;
+        position: absolute;
+        top: 9px;
+        transform: rotate(45deg); }
+  .Input_file input[type="file"] {
+    display: none; }
   .Input_label {
     font-size: 18px;
     font-weight: 300;

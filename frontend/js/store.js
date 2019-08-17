@@ -62,28 +62,13 @@ export let actions = (store) => ({
     };
   },
 
-  load: (state, { data = null, method, onSuccess = null, scope, url }) => {
+  load: (state, { data = null, headers = {}, method, onSuccess = null, scope, url }) => {
     let params = {
       data,
+      headers,
       method,
       url,
     };
-
-    // const csrfToken = Cookies.get("csrftoken");
-    // if (csrfToken) {
-    //   params.headers = {
-    //     "X-CSRFToken": csrfToken,
-    //   };
-    // }
-
-    /*
-    if (token) {
-      params.headers = {
-        Authorization: `Token ${token}`
-      };
-    }
-    */
-
     scope.ajaxBegin();
     axios(params)
       .then(response => {

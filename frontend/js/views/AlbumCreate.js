@@ -1,6 +1,7 @@
 import { Component, h } from "preact";
 import { route } from "preact-router";
 import { connect } from "unistore/preact";
+import IconAdd from '../components/IconAdd';
 import IconPlay from '../components/IconPlay';
 import Loader from '../components/Loader';
 import Sidebar from '../components/Sidebar';
@@ -11,28 +12,40 @@ class AlbumCreate extends Component {
     artist: null,
     errors: {
       artist: false,
+      file: false,
       name: false,
     },
+    file: null,
     name: "",
   };
 
   componentDidMount() {
     this.setState({
       artist: null,
+      file: null,
       name: "",
     });
   }
 
   mutate(event, key) {
     const obj = {};
-    obj[key] = event.target.value;
+    obj[key] = (event.target.getAttribute("type") === "file"
+      ? (event.target.files.length > 0 ? event.target.files[0] : null)
+      : event.target.value);
+    this.setState(obj);
+  }
+
+  mutateNull(event, key) {
+    event.preventDefault();
+    const obj = {};
+    obj[key] = null;
     this.setState(obj);
   }
 
   onSubmit = (event) => {
     event.preventDefault();
     const { scope } = this.props;
-    const { artist, name } = this.state;
+    const { artist, file, name } = this.state;
 
     this.setState({
       errors: {
@@ -45,12 +58,18 @@ class AlbumCreate extends Component {
       return;
     }
 
-    const data = {
-      artist,
-      name,
-    };
+    const data = new FormData();
+    data.append("artist", artist);
+    data.append("name", name);
+    if (file) {
+      data.append("cover", file);
+    }
+
     scope.load({
       data,
+      headers: {
+        "Content-Type": "multipart/form-data",
+      },
       method: "post",
       onSuccess: (data) => {
         const { id } = data.json.results.album;
@@ -70,6 +89,7 @@ class AlbumCreate extends Component {
 
     const { errors } = this.state;
     const mutate = this.mutate.bind(this);
+    const mutateNull = this.mutateNull.bind(this);
 
     return (
       <form className="Form" onSubmit={this.onLogin}>
@@ -97,6 +117,23 @@ class AlbumCreate extends Component {
               ))}
             </select>
             <IconPlay classes="Input_drop-arrow" />
+          </div>
+        </label>
+        <label class={`Input ${errors.file ? "-error": ""}`}>
+          <div class="Input_label">Cover Image</div>
+          <div class="Input_file">
+            {state.file && (
+              <div>
+                <span>{state.file.name}</span>
+                <a href="#" onClick={(e) => mutateNull(e, 'file')}>
+                  <IconAdd />
+                </a>
+              </div>
+            )}
+            {!state.file && (
+              <div>Select a file...</div>
+            )}
+            <input name="file" onChange={(e) => mutate(e, 'file')} type="file" />
           </div>
         </label>
         <button className="Button -primary"
