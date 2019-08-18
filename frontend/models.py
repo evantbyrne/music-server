@@ -56,5 +56,8 @@ class Song(models.Model):
     def __str__(self):
         return self.name
 
+    def create_name_from_file(self):
+        self.name = ".".join(self.file.name.split(".")[:-1])
+
     class Meta:
         ordering = ['album_order']

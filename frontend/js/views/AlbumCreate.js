@@ -12,17 +12,17 @@ class AlbumCreate extends Component {
     artist: null,
     errors: {
       artist: false,
-      file: false,
+      cover: false,
       name: false,
     },
-    file: null,
+    cover: null,
     name: "",
   };
 
   componentDidMount() {
     this.setState({
       artist: null,
-      file: null,
+      cover: null,
       name: "",
     });
   }
@@ -45,7 +45,7 @@ class AlbumCreate extends Component {
   onSubmit = (event) => {
     event.preventDefault();
     const { scope } = this.props;
-    const { artist, file, name } = this.state;
+    const { artist, cover, name } = this.state;
 
     this.setState({
       errors: {
@@ -61,8 +61,8 @@ class AlbumCreate extends Component {
     const data = new FormData();
     data.append("artist", artist);
     data.append("name", name);
-    if (file) {
-      data.append("cover", file);
+    if (cover) {
+      data.append("cover", cover);
     }
 
     scope.load({
@@ -119,21 +119,21 @@ class AlbumCreate extends Component {
             <IconPlay classes="Input_drop-arrow" />
           </div>
         </label>
-        <label class={`Input ${errors.file ? "-error": ""}`}>
+        <label class={`Input ${errors.cover ? "-error": ""}`}>
           <div class="Input_label">Cover Image</div>
           <div class="Input_file">
-            {state.file && (
+            {state.cover && (
               <div>
-                <span>{state.file.name}</span>
-                <a href="#" onClick={(e) => mutateNull(e, 'file')}>
+                <span>{state.cover.name}</span>
+                <a href="#" onClick={(e) => mutateNull(e, 'cover')}>
                   <IconAdd />
                 </a>
               </div>
             )}
-            {!state.file && (
+            {!state.cover && (
               <div>Select a file...</div>
             )}
-            <input name="file" onChange={(e) => mutate(e, 'file')} type="file" />
+            <input name="cover" onChange={(e) => mutate(e, 'cover')} type="file" />
           </div>
         </label>
         <button className="Button -primary"

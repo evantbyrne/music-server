@@ -13,6 +13,12 @@
     display: block;
   }
 
+  &_add {
+    bottom: 20px;
+    position: absolute;
+    right: 100px;
+  }
+
   &_cover {
     background-position: center;
     background-repeat: no-repeat;

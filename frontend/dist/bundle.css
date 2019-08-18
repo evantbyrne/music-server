@@ -20,6 +20,10 @@ html {
     clear: both;
     content: "";
     display: block; }
+  .Album_add {
+    bottom: 20px;
+    position: absolute;
+    right: 100px; }
   .Album_cover {
     background-position: center;
     background-repeat: no-repeat;
