@@ -9,7 +9,9 @@ import AlbumAddSongs from './views/AlbumAddSongs.js';
 import AlbumCreate from './views/AlbumCreate.js';
 import AlbumDelete from './views/AlbumDelete.js';
 import AlbumDetail from './views/AlbumDetail.js';
-import AlbumList from './views/AlbumList.js';
+import { AlbumListConnection } from './views/AlbumList.js';
+import ArtistDetail from './views/ArtistDetail.js';
+import ArtistList from './views/ArtistList.js';
 import NowPlaying from './views/NowPlaying.js';
 import SongList from './views/SongList.js';
 
@@ -27,7 +29,9 @@ render((
         <AlbumAddSongs path="/albums/:albumId/add-songs/" />
         <AlbumDelete path="/albums/:albumId/delete/" />
         <AlbumDetail path="/albums/:albumId/" />
-        <AlbumList path="/albums/" />
+        <AlbumListConnection path="/albums/" />
+        <ArtistDetail path="/artists/:artistId/" />
+        <ArtistList path="/artists/" />
         <NowPlaying path="/now-playing/" />
         <SongList path="/" />
         <Login path="/auth/login" />

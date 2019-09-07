@@ -65,4 +65,7 @@ const AlbumListConnection = connect(["loading_count", "user"], actions)(scope =>
   );
 });
 
-export default AlbumListConnection;
+export {
+  AlbumList,
+  AlbumListConnection,
+};
