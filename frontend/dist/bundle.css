@@ -112,6 +112,9 @@ html {
   content: "";
   display: block; }
 
+.ButtonBar.-top-bar {
+  margin-bottom: 20px; }
+
 .ButtonBar .Button {
   float: left;
   margin-left: 10px; }

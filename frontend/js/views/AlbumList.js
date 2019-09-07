@@ -26,15 +26,9 @@ class AlbumList extends Component {
   }
 
   render(props, state) {
-    const { data, is_loading, scope } = props;
-
-    if (data === null || is_loading) {
-      return null;
-    }
-
     return (
       <div id="albums">
-        {data.results.albums.map(album => (
+        {props.data.results.albums.map(album => (
           <a className="Album" href={`/albums/${album.id}/`} key={`album-list_${album.id}`}>
             <div className="Album_cover" style={{ backgroundImage: `url(${album.cover})` }}></div>
             <div className="Album_main">
@@ -51,6 +45,23 @@ class AlbumList extends Component {
   }
 };
 
+const AlbumListView = (props) => {
+  const { data, is_loading, scope } = props;
+
+  if (data === null || is_loading) {
+    return null;
+  }
+
+  return (
+    <div>
+      <div className="ButtonBar -top-bar">
+        <a className="Button -right" href="/create/album/">Create</a>
+      </div>
+      <AlbumList data={data} scope={scope} />
+    </div>
+  );
+};
+
 const AlbumListConnection = connect(["loading_count", "user"], actions)(scope => {
   return (
     <div className="Container">
@@ -58,7 +69,7 @@ const AlbumListConnection = connect(["loading_count", "user"], actions)(scope =>
       <UserLoader />
       <div className="Container_main">
         <Loader url="/api/albums/">
-          <AlbumList scope={scope} />
+          <AlbumListView scope={scope} />
         </Loader>
       </div>
     </div>

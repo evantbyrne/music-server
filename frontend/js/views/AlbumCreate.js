@@ -147,7 +147,7 @@ class AlbumCreate extends Component {
 const AlbumCreateConnection = connect([], actions)(scope => {
   return (
     <div className="Container">
-      <Sidebar route="upload" />
+      <Sidebar route="create.albums" />
       <div className="Container_main">
         <Loader url="/api/artists/">
           <AlbumCreate scope={scope} />

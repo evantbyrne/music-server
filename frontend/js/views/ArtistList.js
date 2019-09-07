@@ -16,13 +16,18 @@ class ArtistList extends Component {
 
     return (
       <div id="artists">
-        {data.results.artists.map(artist => (
-          <a className="Album" href={`/artists/${artist.id}/`} key={`artist-list_${artist.id}`}>
-            <div className="Album_main">
-              <div className="Album_title">{artist.name}</div>
-            </div>
-          </a>
-        ))}
+        <div className="ButtonBar -top-bar">
+          <a className="Button -right" href="/create/artist/">Create</a>
+        </div>
+        <div>
+          {data.results.artists.map(artist => (
+            <a className="Album" href={`/artists/${artist.id}/`} key={`artist-list_${artist.id}`}>
+              <div className="Album_main">
+                <div className="Album_title">{artist.name}</div>
+              </div>
+            </a>
+          ))}
+        </div>
       </div>
     );
   }

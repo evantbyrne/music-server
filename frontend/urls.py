@@ -18,6 +18,7 @@ urlpatterns = [
     path('api/albums/<int:id>/add-songs/', album_views.album_add_songs, name='api.albums.add-songs'),
     path('api/albums/<int:id>/delete/', album_views.album_delete, name='api.albums.delete'),
     path('api/artists/', artist_views.artist_index, name='api.artists'),
+    path('api/artists/create/', artist_views.artist_create, name='api.artists.create'),
     path('api/artists/<int:id>/', artist_views.artist_detail, name='api.artists.detail'),
     path('api/auth/login/', auth_views.auth_login, name='api.auth.login'),
     path('api/auth/user/', auth_views.auth_user_current, name='api.auth.user'),
@@ -26,7 +27,8 @@ urlpatterns = [
     path('artists/<int:id>/', views.detail, name='artists.detail'),
     path('auth/login/', views.dashboard, name='auth.login'),
     path('auth/logout/', views.auth_logout, name='auth.logout'),
+    path('create/album/', views.dashboard, name='create.album'),
+    path('create/artist/', views.dashboard, name='create.artist'),
     path('now-playing/', views.dashboard, name='now-playing'),
-    path('upload/', views.dashboard, name='upload'),
     path('', views.dashboard, name='index')
 ]

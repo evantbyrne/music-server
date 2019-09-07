@@ -14,7 +14,6 @@ class Sidebar extends Component {
           <a className={`Sidebar_nav-link ${props.route === 'artists' ? '-active' : ''}`} href="/artists/" id="SidbarNav_artists">Artists</a>
           <a className={`Sidebar_nav-link ${props.route === 'now-playing' ? '-active' : ''}`} href="/now-playing/" id="SidbarNav_now-playing">Now Playing</a>
           <a className={`Sidebar_nav-link ${props.route === 'songs' ? '-active' : ''}`} href="/" id="SidbarNav_songs">Songs</a>
-          <a className={`Sidebar_nav-link ${props.route === 'upload' ? '-active' : ''}`} href="/upload/" id="SidbarNav_upload">Upload</a>
           <a className="Sidebar_nav-link" href="/auth/logout/" id="SidbarNav_logout" onClick={this.onLogOut}>Logout</a>
         </nav>
       </aside>

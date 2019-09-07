@@ -1,6 +1,33 @@
 from frontend.models import Artist
+from django import forms
 from django.http import HttpRequest, JsonResponse
+from django.views.decorators.csrf import csrf_exempt
+from django.views.decorators.http import require_POST
 from .serializers import serialize_album, serialize_artist
+
+
+class ArtistCreateForm(forms.ModelForm):
+    class Meta:
+        fields = (
+            "name",
+        )
+        model = Artist
+
+
+@require_POST
+@csrf_exempt
+def artist_create(request: HttpRequest) -> JsonResponse:
+    form = ArtistCreateForm(request.POST)
+    if not form.is_valid():
+        return JsonResponse({
+            "error": form.errors.get_json_data(),
+        }, status=403)
+    artist = form.save()
+    return JsonResponse({
+        "results": {
+            "artist": serialize_artist(artist),
+        },
+    })
 
 
 def artist_detail(request: HttpRequest, id: int) -> JsonResponse:
