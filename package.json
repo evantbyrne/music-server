@@ -6,7 +6,7 @@
     "test": "./node_modules/.bin/mocha --exit --require babel-register --sort tests/"
   },
   "dependencies": {
-    "axios": ">=0.18.1",
+    "axios": ">=0.21.1",
     "howler": "^2.1.2",
     "js-cookie": "^2.2.0",
     "preact": "^8.4.2",
